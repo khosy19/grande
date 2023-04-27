@@ -18,6 +18,14 @@
             </h4>
             <div class="toolbar">
                 <!--        Here you can write extra buttons/actions for the toolbar              -->
+                {{-- filter kategori --}}
+                <div class="form-group">
+                    <label for="category">Status Pesanan</label>
+                    <select name="category" class="form-control" required>
+                        <option value="finish">Finish</option>
+                        <option value="waiting">Waiting</option>
+                    </select>
+                </div>
             </div>
             <div class="material-datatables">
                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"

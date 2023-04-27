@@ -15,10 +15,18 @@
         </div>
         <div class="card-content">
             <h4 class="card-title">List
-                <a href="{{ route('add_food') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Food</a>
             </h4>
+                <a href="{{ route('add_food') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Food</a>
             <div class="toolbar">
                 <!--        Here you can write extra buttons/actions for the toolbar              -->
+                {{-- filter kategori --}}
+                <div class="form-group">
+                    <label for="category">Categories</label>
+                    <select name="category" class="form-control" required>
+                        <option value="food">Foods</option>
+                        <option value="drink">Drinks</option>
+                    </select>
+                </div>
             </div>
             <div class="material-datatables">
                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
@@ -37,7 +45,7 @@
                             <tr>
                                 <td>
                                     <div class="img-container">
-                                        <img src="{{url('assets/img').'/'.$data->foto}}"">
+                                        <img src="{{url('assets/img').'/'.$data->foto}}">
                                     </div>    
                                 </td>
                                 <td>
