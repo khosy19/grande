@@ -19,13 +19,19 @@
             <div class="toolbar">
                 <!--        Here you can write extra buttons/actions for the toolbar              -->
                 {{-- filter kategori --}}
+                <form action="{{ route('transaksi') }}" class="action" method="GET">
                 <div class="form-group">
                     <label for="category">Status Pesanan</label>
                     <select name="category" class="form-control" required>
-                        <option value="finish">Finish</option>
-                        <option value="waiting">Waiting</option>
+                        <option value="all">All</option>
+                        <option value="waiting" {{ Request::get('status') == 'waiting' ? 'selected' : '' }}>Waiting</option>
+                        <option value="success" {{ Request::get('status') == 'finish' ? 'selected' : '' }}>Finish</option>
+                        {{-- <option value="waiting">Waiting</option>
+                        <option value="finish">Finish</option> --}}
                     </select>
                 </div>
+                <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
             </div>
             <div class="material-datatables">
                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"

@@ -2,23 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Items;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class FoodController extends Controller
 {
     public function index(Request $request){
         // return $request->all();
-        $data = Items::all();
-        // $tipe = $request->input('tipe');
+        // $data = Items::all();
+        $filter = $request->input('tipe');
+        if($filter == 'food') {
+            $data = DB::table('items')->where('tipe', 1)->get();
+        } elseif ($filter == 'drink') {
+            $data = DB::table('items')->where('tipe', 2)->get();
+        } else {
+            $data = Items::all();
+        }
         // $items = Items::when($tipe, function($query, $tipe) {
         //     return $query->where('tipe', $tipe);
         // })->get();
+        // $data = Items::where('tipe', '=', 1)->get();
 
         return view('admin.food_list',[
             'data' => $data,
-            // 'items' => $items,
         ]);
     }
 

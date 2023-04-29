@@ -27,8 +27,11 @@
                             
                         @endif --}}
                         <select name="tipe" class="form-control" required>
-                            <option value="food">Foods</option>
-                            <option value="drink">Drinks</option>
+                            <option value="all">All</option>
+                            <option value="food" {{ Request::get('tipe') == 'food' ? 'selected' : '' }}>Foods</option>
+                            <option value="drink" {{ Request::get('tipe') == 'drink' ? 'selected' : '' }}>Drinks</option>
+                            {{-- <option value="food">Foods</option>
+                            <option value="drink">Drinks</option> --}}
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Filter</button>
@@ -49,6 +52,7 @@
                     </thead>
                     <tbody>
                         @foreach($data as $data)
+                        {{-- @if($data->tipe == Request::get('tipe', 'food')) --}}
                             <tr>
                                 <td>
                                     <div class="img-container">

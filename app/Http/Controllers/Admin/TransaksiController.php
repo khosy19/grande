@@ -2,22 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Transaksi;
+use Illuminate\Http\Request;
 use App\Models\Detail_transaksi;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class TransaksiController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
                     ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')    
                     ->get();
         $unik = $data->unique('id_transaksi');
+        $filter = $request->input('status');
+        if($filter == 'waiting') {
+            $data = DB::table('transaksi')->where('status', 0)->get();
+        } elseif ($filter == 'success') {
+            $data = DB::table('transaksi')->where('status', 1)->get();
+        } else {
+            $data = Transaksi::all();
+        }
 
         return view('admin.transaksi',[
             'data' => $unik,
         ]);
+
     }
 
     public function detail($id){
