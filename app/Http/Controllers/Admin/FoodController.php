@@ -8,11 +8,17 @@ use App\Models\Items;
 
 class FoodController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        // return $request->all();
         $data = Items::all();
+        // $tipe = $request->input('tipe');
+        // $items = Items::when($tipe, function($query, $tipe) {
+        //     return $query->where('tipe', $tipe);
+        // })->get();
 
         return view('admin.food_list',[
             'data' => $data,
+            // 'items' => $items,
         ]);
     }
 

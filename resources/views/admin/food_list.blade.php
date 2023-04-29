@@ -20,13 +20,20 @@
             <div class="toolbar">
                 <!--        Here you can write extra buttons/actions for the toolbar              -->
                 {{-- filter kategori --}}
-                <div class="form-group">
-                    <label for="category">Categories</label>
-                    <select name="category" class="form-control" required>
-                        <option value="food">Foods</option>
-                        <option value="drink">Drinks</option>
-                    </select>
-                </div>
+                <form action="{{ route('food') }}" class="action" method="GET">
+                    <div class="form-group">
+                        <label for="tipe">Categories</label>
+                        {{-- @if ('tipe')
+                            
+                        @endif --}}
+                        <select name="tipe" class="form-control" required>
+                            <option value="food">Foods</option>
+                            <option value="drink">Drinks</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
+                
             </div>
             <div class="material-datatables">
                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
