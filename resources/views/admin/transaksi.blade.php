@@ -21,9 +21,10 @@
                 {{-- filter kategori --}}
                 <form action="{{ route('transaksi') }}" class="action" method="GET">
                 <div class="form-group">
-                    <label for="category">Status Pesanan</label>
-                    <select name="category" class="form-control" required>
-                        <option value="all">All</option>
+                    <a href="{{ route('add_transaksi') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Transaction</a>
+                    <label for="status">Status Pesanan</label>
+                    <select name="status" class="form-control" required>
+                        {{-- <option value="all">All</option> --}}
                         <option value="waiting" {{ Request::get('status') == 'waiting' ? 'selected' : '' }}>Waiting</option>
                         <option value="success" {{ Request::get('status') == 'finish' ? 'selected' : '' }}>Finish</option>
                         {{-- <option value="waiting">Waiting</option>

@@ -11,21 +11,24 @@ use App\Http\Controllers\Controller;
 class TransaksiController extends Controller
 {
     public function index(Request $request){
+        $status = $request->input('status');
         $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
                     ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')    
                     ->get();
         $unik = $data->unique('id_transaksi');
-        $filter = $request->input('status');
-        if($filter == 'waiting') {
-            $data = DB::table('transaksi')->where('status', 0)->get();
-        } elseif ($filter == 'success') {
-            $data = DB::table('transaksi')->where('status', 1)->get();
-        } else {
+        
+        if($status == 'waiting') {
+            $data = Transaksi::where('status',0)->get();
+        } elseif ($status == 'finish') {
+            $data = Transaksi::where('status',1)->get();
+        } else{
             $data = Transaksi::all();
+
         }
 
         return view('admin.transaksi',[
             'data' => $unik,
+            // 'status' => $status,
         ]);
 
     }

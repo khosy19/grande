@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Add Menu')
+@section('title', 'Add Transaction')
 
 @section('content')
 @if(count($errors) > 0)
@@ -12,7 +12,7 @@
 @endif
 <div class="col-md-12">
     <div class="card">
-        <form id="RegisterValidation" action="{{ route('store_foods') }}" method="POST" enctype="multipart/form-data">
+        <form id="RegisterValidation" action="{{ route('store_transaksi') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-header card-header-icon" data-background-color="blue">
                 <i class="material-icons">restaurant</i>
@@ -69,10 +69,10 @@
                 <div class="form-group">
                     <small>*</small> Required fields</div>
                 <div class="form-footer">
-                    <a href="{{ route('food') }}" class="btn btn-danger btn-fill pull-left">
+                    <a href="{{ route('transaksi') }}" class="btn btn-danger btn-fill pull-left">
                         <i class="material-icons">arrow_back</i> Back
                     </a>
-                    <button type="submit" class="btn btn-blue btn-fill pull-right">Add Food</button>
+                    <button type="submit" class="btn btn-blue btn-fill pull-right">Add Transaksi</button>
                 </div>
             </div>
         </form>

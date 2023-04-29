@@ -42,6 +42,7 @@ Route::middleware('auth', 'validatelevels:admin')->group(function () {
     Route::get('/admin/management/food/delete/{id}', [Admin\FoodController::class, 'delete'])->name('delete_food');
 
     Route::get('/admin/management/transaksi', [Admin\TransaksiController::class, 'index'])->name('transaksi');
+    Route::view('/admin/management/transaksi/add', 'admin.transaksi_add')->name('add_transaksi');
     Route::get('/admin/management/transaksi/detail/{id}', [Admin\TransaksiController::class, 'detail'])->name('transaksi_detail');
 
     Route::post('/admin/management/user/store', [Admin\UsersController::class, 'store'])->name('store_users');

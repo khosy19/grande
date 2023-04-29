@@ -16,22 +16,19 @@
         <div class="card-content">
             <h4 class="card-title">List
             </h4>
-                <a href="{{ route('add_food') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Food</a>
             <div class="toolbar">
                 <!--        Here you can write extra buttons/actions for the toolbar              -->
                 {{-- filter kategori --}}
                 <form action="{{ route('food') }}" class="action" method="GET">
                     <div class="form-group">
+                        <a href="{{ route('add_food') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Food</a>
                         <label for="tipe">Categories</label>
-                        {{-- @if ('tipe')
-                            
-                        @endif --}}
+
                         <select name="tipe" class="form-control" required>
                             <option value="all">All</option>
                             <option value="food" {{ Request::get('tipe') == 'food' ? 'selected' : '' }}>Foods</option>
                             <option value="drink" {{ Request::get('tipe') == 'drink' ? 'selected' : '' }}>Drinks</option>
-                            {{-- <option value="food">Foods</option>
-                            <option value="drink">Drinks</option> --}}
+
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Filter</button>
