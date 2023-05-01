@@ -87,14 +87,14 @@
                                             @csrf
                                             {{ method_field('PUT') }}
                                             <input type="hidden" name="finish" value="0">
-                                            <button type="submit" class="btn btn-rose btn-round">Unpayment</button>
+                                            <button type="submit" class="btn btn-rose btn-round remove">Unpayment</button>
                                         </form>
                                     @elseif ($data->status == 0)
                                         <form action="{{ route('transaksi_update', $data->id_transaksi) }}" method="POST">
                                             @csrf
                                             {{ method_field('PUT') }}
                                             <input type="hidden" name="finish" value="1">
-                                            <button type="submit" class="btn btn-rose btn-round">Finish</button>
+                                            <button type="submit" class="btn btn-rose btn-round remove">Finish</button>
                                         </form>
                                     @else
                                     <i class="material-icons" style="font-size: 40px; color: rgb(182, 21, 21);">remove</i>
@@ -151,6 +151,40 @@
                 }
             })
         });
+
+        //script kartu kredit
+        Swal.fire({
+        title: 'Masukkan Kode Referensi Kartu Kredit',
+        input: 'text',
+        inputAttributes: {
+            autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Look up',
+        showLoaderOnConfirm: true,
+        preConfirm: (login) => {
+            // return fetch(`//api.github.com/users/${login}`)
+            .then(response => {
+                if (!response.ok) {
+                throw new Error(response.statusText)
+                }
+                return response.json()
+            })
+            .catch(error => {
+                Swal.showValidationMessage(
+                `Request failed: ${error}`
+                )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+            title: `${result.value.login}'s avatar`,
+            imageUrl: result.value.avatar_url
+            })
+        }
+        })
     </script>
 @endpush
 @endsection
