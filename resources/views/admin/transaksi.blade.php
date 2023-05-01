@@ -21,13 +21,14 @@
                 {{-- filter kategori --}}
                 <form action="{{ route('transaksi') }}" class="action" method="GET">
                 <div class="form-group">
-                    <a href="{{ route('add_transaksi') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Transaction</a>
+                    {{-- <a href="{{ route('add_transaksi') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Transaction</a> --}}
                     <label for="status">Status Pesanan</label>
                     <select name="status" class="form-control" required>
                         {{-- <option value="all">All</option> --}}
+                        <option value="all">All</option>
                         <option value="unpayment" {{ Request::get('status') == 'unpayment' ? 'selected' : '' }}>Unpayment</option>
                         <option value="waiting" {{ Request::get('status') == 'waiting' ? 'selected' : '' }}>Waiting</option>
-                        <option value="success" {{ Request::get('status') == 'finish' ? 'selected' : '' }}>Finish</option>
+                        <option value="success" {{ Request::get('status') == 'success' ? 'selected' : '' }}>Finish</option>
                         {{-- <option value="waiting">Waiting</option>
                         <option value="finish">Finish</option> --}}
                     </select>
@@ -62,7 +63,7 @@
                                         <button class="btn btn-primary btn-round" >Unpayment</button>
                                     @elseif($data->status == 1)
                                         <button class="btn btn-success btn-round" disabled>Finish</button>
-                                    @else
+                                    @elseif($data->status == 0)
                                         <button class="btn btn-danger btn-round">Waiting</button>
                                     @endif
                                 </td>

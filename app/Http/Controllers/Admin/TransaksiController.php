@@ -62,7 +62,7 @@ class TransaksiController extends Controller
         $data->status    = $request->finish;
         $data->save();
 
-        $request->session()->flash('info', 'Items Finish');
+        $request->session()->flash('info', 'Status Transaksi Berhasil Diubah');
         return redirect('/admin/management/transaksi');
     }
 }
