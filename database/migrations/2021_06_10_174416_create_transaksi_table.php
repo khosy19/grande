@@ -20,7 +20,7 @@ class CreateTransaksiTable extends Migration
             $table->integer('total');
             $table->integer('rating')->default(0);
             $table->integer('metode'); //1 = cash, 2 = debit card 3, bill
-            $table->integer('status')->default(0); //1 = DONE, 0 = UNDONE
+            $table->integer('status')->default(2); //1 = DONE, 0 = UNDONE, 2=unpayment
             $table->timestamps();
         });
 

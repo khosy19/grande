@@ -27,30 +27,87 @@ class UsersSeeds extends Seeder
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);
-        //buat user kamar
+        //buat user meja
         User::create([
-            'name'  => 'Bima Satria Putri',
-            'room' => 'B110',
+            'name'  => 'Sebelah Kasir',
+            'room' => 'm001',
             'level' => 'guest',
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('m001'),
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);
 
         User::create([
-            'name'  => 'Toddi Nonlangga',
-            'room' => 'B210',
+            'name'  => 'Sebelah Kasir',
+            'room' => 'm002',
             'level' => 'guest',
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('m002'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
+        User::create([
+            'name'  => 'Sebelah Outbond',
+            'room' => 'm003',
+            'level' => 'guest',
+            'password' => bcrypt('m003'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
+        User::create([
+            'name'  => 'Sebelah Outbond',
+            'room' => 'm004',
+            'level' => 'guest',
+            'password' => bcrypt('m004'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
+        User::create([
+            'name'  => 'Di Taman',
+            'room' => 'm005',
+            'level' => 'guest',
+            'password' => bcrypt('m005'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
+        User::create([
+            'name'  => 'Di Taman',
+            'room' => 'm006',
+            'level' => 'guest',
+            'password' => bcrypt('m006'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
+        User::create([
+            'name'  => 'Sebelah Karaoke',
+            'room' => 'm007',
+            'level' => 'guest',
+            'password' => bcrypt('m007'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
+        User::create([
+            'name'  => 'Sebelah Karaoke',
+            'room' => 'm008',
+            'level' => 'guest',
+            'password' => bcrypt('m008'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
+
+        User::create([
+            'name'  => 'Dekat Parkir',
+            'room' => 'm009',
+            'level' => 'guest',
+            'password' => bcrypt('m009'),
             'active'=> '0',
             'remember_token' => Str::random(60),
         ]);
 
         User::create([
-            'name'  => 'Leonardo De Caprio',
-            'room' => 'B310',
+            'name'  => 'Dekat Parkir',
+            'room' => 'm010',
             'level' => 'guest',
-            'password' => bcrypt('admin'),
+            'password' => bcrypt('m010'),
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);

@@ -25,6 +25,7 @@
                     <label for="status">Status Pesanan</label>
                     <select name="status" class="form-control" required>
                         {{-- <option value="all">All</option> --}}
+                        <option value="unpayment" {{ Request::get('status') == 'unpayment' ? 'selected' : '' }}>Unpayment</option>
                         <option value="waiting" {{ Request::get('status') == 'waiting' ? 'selected' : '' }}>Waiting</option>
                         <option value="success" {{ Request::get('status') == 'finish' ? 'selected' : '' }}>Finish</option>
                         {{-- <option value="waiting">Waiting</option>
@@ -57,7 +58,9 @@
                                 <td class="text-center"><button class="btn btn-primary btn-round"><i class="material-icons">meeting_room</i>{{ $data->room }}</button></td>
                                 <td>Rp {{number_format($data->total,2,',','.')}}</td>
                                 <td class="text-center">
-                                    @if($data->status == 1)
+                                    @if($data->status == 2)
+                                        <button class="btn btn-primary btn-round" >Unpayment</button>
+                                    @elseif($data->status == 1)
                                         <button class="btn btn-success btn-round" disabled>Finish</button>
                                     @else
                                         <button class="btn btn-danger btn-round">Waiting</button>
@@ -79,7 +82,14 @@
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    @if ($data->status == 0)
+                                    @if ($data->status == 2)
+                                        <form action="{{ route('transaksi_update', $data->id_transaksi) }}" method="POST">
+                                            @csrf
+                                            {{ method_field('PUT') }}
+                                            <input type="hidden" name="finish" value="0">
+                                            <button type="submit" class="btn btn-rose btn-round">Unpayment</button>
+                                        </form>
+                                    @elseif ($data->status == 0)
                                         <form action="{{ route('transaksi_update', $data->id_transaksi) }}" method="POST">
                                             @csrf
                                             {{ method_field('PUT') }}

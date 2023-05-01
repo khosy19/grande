@@ -17,6 +17,6 @@ class Transaksi extends Model
         'total',
         'rating',
         'metode',
-        // 'status',
+        'status',
     ];
 }

@@ -12,22 +12,32 @@ class TransaksiController extends Controller
 {
     public function index(Request $request){
         $status = $request->input('status');
-        $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
-                    ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')    
-                    ->get();
-        $unik = $data->unique('id_transaksi');
-        
-        if($status == 'waiting') {
-            $data = Transaksi::where('status',0)->get();
-        } elseif ($status == 'finish') {
-            $data = Transaksi::where('status',1)->get();
-        } else{
-            $data = Transaksi::all();
-
+        if ($status == 'unpayment') {
+            $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
+                        ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
+                        ->where('status', 2)    
+                        ->get();
+        }elseif ($status =='waiting') {
+            $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
+                        ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
+                        ->where('status', 0)    
+                        ->get();
+        }elseif($status == 'success'){
+            $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
+                        ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
+                        ->where('status', 1)    
+                        ->get();
+        }else{
+            $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
+            ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
+            ->get(); 
         }
-
+        
+        $unik = $data->unique('id_transaksi');
+        // return $unik;
         return view('admin.transaksi',[
             'data' => $unik,
+            // 'data2' => $data2,
             // 'status' => $status,
         ]);
 
