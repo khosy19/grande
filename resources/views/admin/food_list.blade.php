@@ -44,6 +44,7 @@
                             <th>Items</th>
                             <th class="disabled-sorting">Descriptions</th>
                             <th class="disabled-sorting">Price</th>
+                            <th class="disabled-sorting">Estimate</th>
                             <th class="disabled-sorting text-center">Actions</th>
                         </tr>
                     </thead>
@@ -67,6 +68,8 @@
                                 </td>
                                 <td>{{$data->deskripsi}}</td>
                                 <td style="width: 15%">Rp {{number_format($data->harga,2,',','.')}}</td>
+                                <td style="width: 15%">{{number_format($data->waktu_menu)}} Minutes</td>
+
                                 <td class="text-center">
                                     <a href="{{ route('edit_food', $data->id_items) }}"
                                         class="btn btn-simple btn-warning btn-icon edit"><i

@@ -37,6 +37,7 @@ class FoodController extends Controller
             'price'  => 'required|numeric',
             'type'    => 'required|max:1',
             'display' => 'required|mimes:jpg,jpeg,bmp,png',
+            'estimate'=> 'required|numeric',
         ]);
 
         $file = $request->file('display');
@@ -50,6 +51,7 @@ class FoodController extends Controller
             'harga'        => $request->price,
             'tipe'         => $request->type,
             'foto'         => $nama_file,
+            'waktu_menu'   => $request->estimate,
         ]);
         
         $request->session()->flash('info', 'Items Add Successfully');
@@ -75,6 +77,8 @@ class FoodController extends Controller
                 'price'  => 'required|numeric',
                 'type'    => 'required|max:1',
                 'display' => 'required|mimes:jpg,jpeg,bmp,png',
+                'estimate'=> 'required|numeric',
+
             ]);
 
             $file = $request->file('display');
@@ -85,9 +89,10 @@ class FoodController extends Controller
             $data               = Items::find($id);
             $data->nama_makanan = $request->name;
             $data->deskripsi    = $request->desc;
-            $data->harga    = $request->price;
-            $data->foto     = $nama_file;
-            $data->tipe     = $request->type;
+            $data->harga        = $request->price;
+            $data->foto         = $nama_file;
+            $data->tipe         = $request->type;
+            $data->waktu_menu   = $request->estimate;
             $data->save();
 
             $request->session()->flash('info', 'Items Edit Successfully');
@@ -95,10 +100,11 @@ class FoodController extends Controller
     
         }else {
             $this->validate($request, [
-                'name'   => 'required|max:255',
-                'desc'   => 'required|max:255',
-                'price'  => 'required|numeric',
-                'type'    => 'required|max:1',
+                'name'         => 'required|max:255',
+                'desc'         => 'required|max:255',
+                'estimate'     => 'required|numeric',
+                'price'        => 'required|numeric',
+                'type'         => 'required|max:1',
             ]);
 
             $data               = Items::find($id);
@@ -106,6 +112,7 @@ class FoodController extends Controller
             $data->deskripsi    = $request->desc;
             $data->harga    = $request->price;
             $data->tipe     = $request->type;
+            $data->waktu_menu   = $request->estimate;
             $data->save();
 
             $request->session()->flash('info', 'Items Edit Successfully');

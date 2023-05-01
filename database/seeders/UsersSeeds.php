@@ -27,6 +27,33 @@ class UsersSeeds extends Seeder
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);
+
+        //buat user kasir
+        User::create([
+            'name'  => 'Lala Savitri',
+            'room' => 'lala@kasir.com',
+            'level' => 'kasir',
+            'password' => bcrypt('kasir'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
+        User::create([
+            'name'  => 'Rahma Yudianti',
+            'room' => 'rahma@kasir.com',
+            'level' => 'kasir',
+            'password' => bcrypt('kasir'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
+        //buat user produksi
+        User::create([
+            'name'  => 'Yudhistira Ardiansyah',
+            'room' => 'yudistira@produksi.com',
+            'level' => 'produksi',
+            'password' => bcrypt('produksi'),
+            'active'=> '1',
+            'remember_token' => Str::random(60),
+        ]);
         //buat user meja
         User::create([
             'name'  => 'Sebelah Kasir',

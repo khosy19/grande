@@ -45,8 +45,9 @@ class TransaksiController extends Controller
 
     public function detail($id){
         $detail = Detail_transaksi::join('items', 'items.id_items' , '=', 'detail_transaksi.id_items')
-                  ->where('detail_transaksi.id_transaksi', '=', $id)
-                  ->get();
+                // ->join('users', 'users.id', '=', 'detail_transaksi.id_users')
+                ->where('detail_transaksi.id_transaksi', '=', $id)
+                ->get();
                   
         return view('admin.transaksi_detail', [
             'detail' => $detail,

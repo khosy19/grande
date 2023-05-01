@@ -42,6 +42,12 @@
                                     @if($data->level == 'admin')
                                         <button class="btn btn-info btn-round">{{ $data->level }}</button>
                                     @endif
+                                    {{-- @if($data->level == 'kasir')
+                                        <button class="btn btn-info btn-round">{{ $data->level }}</button>
+                                    @endif
+                                    @if($data->level == 'produksi')
+                                        <button class="btn btn-info btn-round">{{ $data->level }}</button>
+                                    @endif --}}
                                     @if($data->level == 'guest')
                                         <button class="btn btn-default btn-round">{{ $data->level }}</button>
                                     @endif

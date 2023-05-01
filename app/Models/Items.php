@@ -18,6 +18,7 @@ class Items extends Model
         'harga',
         'foto',
         'tipe',
+        'waktu_menu',
     ];
 
     

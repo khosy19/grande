@@ -24,7 +24,8 @@ class HistoryController extends Controller
 
     public function detail($id){
         $detail = Detail_transaksi::join('items', 'items.id_items' , '=', 'detail_transaksi.id_items')
-                  ->where('detail_transaksi.id_transaksi', '=', $id)
+        // ->join('users', 'users.id', '=', 'detail_transaksi.id_users')
+        ->where('detail_transaksi.id_transaksi', '=', $id)
                   ->get();
                   
         return view('guest.history_detail', [

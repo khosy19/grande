@@ -43,6 +43,13 @@
                 </div>
                 <div class="form-group label-floating">
                     <label class="control-label">
+                        Estimate (Minutes)
+                        <small>*</small>
+                    </label>
+                    <input class="form-control" name="estimate" type="number" required="true" value="{{$data->waktu_menu}}"/>
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label">
                         Type
                         <small>*</small>
                     </label>

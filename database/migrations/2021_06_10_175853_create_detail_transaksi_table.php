@@ -17,6 +17,7 @@ class CreateDetailTransaksiTable extends Migration
             $table->increments('id_detail_transaksi')->unsigned();
             $table->integer('id_transaksi')->unsigned()->index();
             $table->integer('id_items')->unsigned()->index();
+            // $table->integer('id_users')->unsigned()->index();
             $table->integer('jumlah');
             $table->timestamps();
         });
@@ -28,6 +29,9 @@ class CreateDetailTransaksiTable extends Migration
         Schema::table('detail_transaksi', function ($table) {
             $table->foreign('id_items')->references('id_items')->on('items')->onDelete('cascade');
         });
+        // Schema::table('detail_transaksi', function ($table) {
+        //     $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+        // });
     }
 
     /**

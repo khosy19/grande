@@ -18,6 +18,7 @@
                                     <td>- &nbsp;</td>
                                     <td>&nbsp;{{ $val->nama_makanan }}</td>
                                     <td>&nbsp;x&nbsp;{{ $val->jumlah }}</td>
+                                    {{-- <td>&nbsp;x&nbsp;{{ $val->name }}</td> --}}
                                 </tr>
                                 @endforeach
                             </table>
