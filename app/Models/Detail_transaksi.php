@@ -17,5 +17,7 @@ class Detail_transaksi extends Model
         'id_items',
         // 'id_users',
         'jumlah',
+        'waktu_pesan',
+        'waktu_selesai',
     ];
 }

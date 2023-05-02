@@ -25,7 +25,7 @@
                                 <th>Items</th>
                                 <th>Price</th>
                                 <th>Qty</th>
-                                <th>Proses</th>
+                                <th>Estimate</th>
                                 <th></th>
                             </thead>
                             <tbody>
@@ -43,7 +43,7 @@
                                         <td>{{ number_format($val['harga_items'],2,',','.') }}
                                         </td>
                                         <td>{{ $val['jumlah'] }}</td>
-                                        <td>{{ $val['waktu_menu'] }}</td>
+                                        {{-- <td>{{ $val['waktu_menu'] }}</td> --}}
                                         <td>
                                             <a href="{{ route('hapus_cart', $val['id_items']) }}"
                                                 class="material-icons">highlight_off</a>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Antrians;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ItemsSeeds::class);
         $this->call(TransaksiSeeds::class);
         $this->call(DetailTransaksiSeeds::class);
+        $this->call(AntrianSeeds::class);
     }
 }

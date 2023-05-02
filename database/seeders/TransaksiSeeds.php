@@ -20,12 +20,33 @@ class TransaksiSeeds extends Seeder
         //buat user admin
         Transaksi::truncate();
         Transaksi::create([
-            'invoice'       =>  'FB/2023/Jan/001',
+            'invoice'       =>  'TRANS/2023/Jan/001',
             'id_users'      =>  5,
             'total'         =>  25000,
             'metode'        =>  2,
-            'status'        =>  2,
-            'waktu_pesan'   =>  1,
+            'status'        =>  1,
+        ]);
+        Transaksi::create([
+            'invoice'       =>  'TRANS/2023/Jan/001',
+            'id_users'      =>  5,
+            'total'         =>  7000,
+            'metode'        =>  1,
+            'status'        =>  1,
+        ]);
+        Transaksi::create([
+            'invoice'       =>  'TRANS/2023/Jan/002',
+            'id_users'      =>  6,
+            'total'         =>  25000,
+            'metode'        =>  1,
+            'status'        =>  1,
+        ]);
+        Transaksi::create([
+            'invoice'       =>  'TRANS/2023/Jan/003',
+            'id_users'      =>  7,
+            'total'         =>  7000,
+            'metode'        =>  1,
+            'status'        =>  1,
+            // 'waktu_pesan'   =>  1,
         ]);
     }
 }

@@ -10,7 +10,8 @@
 @endforeach
 <div class="row">
     <div class="col-md-12">
-        <h4 class="title text-center">{{ $sapaan." ".Auth::user()->name }}</h4>
+        <h4 class="title text-center">{{ $sapaan." Pelanggan " }}</h4>
+        {{-- <h4 class="title text-center">{{ $sapaan." ".Auth::user()->name }}</h4> --}}
         <br />
         <div class="nav-center">
             <ul class="nav nav-pills nav-pills-success nav-pills-icons" role="tablist">

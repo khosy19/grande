@@ -23,14 +23,20 @@ class TransaksiController extends Controller
             'id_users' => $id_user,
             'total' => $request->total,
             'rating' => 0,
+            // 'waktu_menu' => $request->waktu_menu,
             'metode' => $request->method,
         ]);
         $cart = Session::get('cart');
         $id_transaksi = Transaksi::orderby('id_transaksi', 'desc')->first()->id_transaksi;
 
         $invoice          = Transaksi::find($id_transaksi);
-        $invoice->invoice = "FB/".date("Y")."/".date("M")."/00".$id_transaksi;
+        $invoice->invoice = "TRANS/".date("Y")."/".date("M")."/00".$id_transaksi;
         $invoice->save();
+
+        // $waktu_menu = 
+        // $waktu_pesan =
+        // $waktu_antri =
+        // $waktu_tiba =
 
         foreach($cart as $item =>$val){
             $id_items = $val['id_items'];
@@ -40,6 +46,8 @@ class TransaksiController extends Controller
                 'id_transaksi' => $id_transaksi,
                 'id_items'   => $id_items,
                 'jumlah'     => $jumlah,
+                'waktu_menu' => $request->waktu_menu,
+
             ]);
         }
        

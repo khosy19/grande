@@ -104,6 +104,10 @@
                             <br>
                             {{ $items->deskripsi }}
                         </p>
+                        <p align="justify">
+                            <br>
+                            Estimate Time : {{ $items->waktu_menu }} (Minutes)
+                        </p>
                         <br>
                         <form class="form" method="POST" action="{{ route('tambah_cart', $items->id_items) }}">
                         @csrf
