@@ -25,32 +25,40 @@ class DetailTransaksiSeeds extends Seeder
             'id_detail_transaksi'       =>  1,
             'id_transaksi'              =>  1,
             'id_items'                  =>  1,
+            'id_station'                =>  1,
             'jumlah'                    =>  1,
             'waktu_pesan'               =>  now(),
+            'waktu_tunggu'              =>  now(),
             'waktu_selesai'             =>  now(),
         ]);
         Detail_transaksi::create([
             'id_detail_transaksi'       =>  2,
             'id_transaksi'              =>  2,
             'id_items'                  =>  9,
+            'id_station'                =>  2,
             'jumlah'                    =>  1,
             'waktu_pesan'               =>  now(),
+            'waktu_tunggu'              =>  now(),
             'waktu_selesai'             =>  now(),
         ]);  
         Detail_transaksi::create([
             'id_detail_transaksi'       =>  3,
             'id_transaksi'              =>  3,
             'id_items'                  =>  1,
+            'id_station'                =>  1,
             'jumlah'                    =>  1,
             'waktu_pesan'               =>  now(),
+            'waktu_tunggu'              =>  now(),
             'waktu_selesai'             =>  now(),
         ]);  
         Detail_transaksi::create([
             'id_detail_transaksi'       =>  4,
             'id_transaksi'              =>  4,
             'id_items'                  =>  9,
+            'id_station'                =>  2,
             'jumlah'                    =>  1,
             'waktu_pesan'               =>  now(),
+            'waktu_tunggu'              =>  now(),
             'waktu_selesai'             =>  now(),
         ]);      
     }

@@ -41,18 +41,26 @@ Route::middleware('auth', 'validatelevels:admin')->group(function () {
     Route::get('/admin/management/food/edit/{id}', [Admin\FoodController::class, 'edit'])->name('edit_food');
     Route::get('/admin/management/food/delete/{id}', [Admin\FoodController::class, 'delete'])->name('delete_food');
 
+    Route::get('/admin/management/station', [Admin\StationController::class, 'index'])->name('station');
+    Route::view('/admin/management/station/add', 'admin.station_add')->name('add_station');
+    Route::get('/admin/management/station/edit/{id}', [Admin\StationController::class, 'edit'])->name('edit_station');
+    Route::get('/admin/management/station/delete/{id}', [Admin\StationController::class, 'delete'])->name('delete_station');
+    // Route::get('/admin/management/antrian/detail/{id}', [Admin\AntrianController::class, 'antriandetail'])->name('transaksi_detail');
+    
     Route::get('/admin/management/transaksi', [Admin\TransaksiController::class, 'index'])->name('transaksi');
     Route::view('/admin/management/transaksi/add', 'admin.transaksi_add')->name('add_transaksi');
     Route::get('/admin/management/transaksi/detail/{id}', [Admin\TransaksiController::class, 'detail'])->name('transaksi_detail');
-
+    
     Route::post('/admin/management/user/store', [Admin\UsersController::class, 'store'])->name('store_users');
     Route::post('/admin/management/room/store', [Admin\RoomController::class, 'store'])->name('store_rooms');
     Route::post('/admin/management/food/store', [Admin\FoodController::class, 'store'])->name('store_foods');
-
+    Route::post('/admin/management/station/store', [Admin\StationController::class, 'store'])->name('store_stations');
+    
     Route::put('/admin/management/user/update/{id}', [Admin\UsersController::class, 'update'])->name('update_users');
     Route::put('/admin/management/room/update/{id}', [Admin\RoomController::class, 'update'])->name('update_rooms');
     Route::put('/admin/management/food/update/{id}', [Admin\FoodController::class, 'update'])->name('update_foods');
     Route::put('/admin/management/transaksi/update/{id}', [Admin\TransaksiController::class, 'update'])->name('transaksi_update');
+    Route::put('/admin/management/station/update/{id}', [Admin\StationController::class, 'update'])->name('station_update');
 
 
 });

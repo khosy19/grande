@@ -3,6 +3,8 @@
 @section('title', 'Transaction List')
 
 @section('content')
+@include('sweetalert::alert')
+
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
       @if(Session::has($msg))
       <p class="alert alert-{{ $msg }}">{{ Session::get($msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
@@ -69,7 +71,8 @@
                                 </td>
                                 <td class="text-center">
                                     @if($data->metode == 1)
-                                    <button class="btn btn-info btn-round" disabled>Credit Card</button>
+                                    {{-- <form action="route('')"></form> --}}
+                                    <button class="btn btn-info btn-round">Credit Card</button>
                                     @elseif ($data->metode == 2)
                                     <button class="btn btn-success btn-round" disabled>Cash</button>
                                     @else
@@ -153,7 +156,8 @@
             })
         });
 
-        //script kartu kredit
+        // npm sweet cc
+        $('.cc-input').on('click', function (event) {
         Swal.fire({
         title: 'Masukkan Kode Referensi Kartu Kredit',
         input: 'text',
@@ -164,7 +168,7 @@
         confirmButtonText: 'Look up',
         showLoaderOnConfirm: true,
         preConfirm: (login) => {
-            // return fetch(`//api.github.com/users/${login}`)
+            return fetch(`//api.github.com/users/${login}`)
             .then(response => {
                 if (!response.ok) {
                 throw new Error(response.statusText)
@@ -186,6 +190,29 @@
             })
         }
         })
+    });
+    //     $('.cc-ref').on('click', function (event) {
+    //     Swal.fire({
+    //     title: 'Masukkan Kode Referensi Kartu Kredit',
+    //     html:
+    //         '<input id="swal-input1" class="swal2-input" placeholder="***">' +
+    //         '<input id="swal-input2" class="swal2-input" placeholder="Input 2">',
+    //     focusConfirm: false,
+    //     preConfirm: () => {
+    //         return [
+    //         document.getElementById('swal-input1').value,
+    //         document.getElementById('swal-input2').value
+    //         ]
+    //     }
+    //     }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         const [input1] = result.value;
+    //         const [input1, input2] = result.value;
+    //         Lakukan sesuatu dengan nilai input1 dan input2
+    //     }
+    //     })
+    // });
+
     </script>
 @endpush
 @endsection

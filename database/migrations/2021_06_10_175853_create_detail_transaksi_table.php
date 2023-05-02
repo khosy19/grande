@@ -17,9 +17,11 @@ class CreateDetailTransaksiTable extends Migration
             $table->increments('id_detail_transaksi')->unsigned();
             $table->integer('id_transaksi')->unsigned()->index();
             $table->integer('id_items')->unsigned()->index();
+            $table->integer('id_station')->unsigned()->index();
             // $table->integer('id_users')->unsigned()->index();
             $table->integer('jumlah');
             $table->timestamp('waktu_pesan')->nullable();
+            $table->timestamp('waktu_tunggu')->nullable();
             $table->timestamp('waktu_selesai')->nullable();
             $table->timestamps();
         });
@@ -30,6 +32,9 @@ class CreateDetailTransaksiTable extends Migration
 
         Schema::table('detail_transaksi', function ($table) {
             $table->foreign('id_items')->references('id_items')->on('items')->onDelete('cascade');
+        });
+        Schema::table('station', function ($table) {
+            $table->foreign('id_station')->references('id_station')->on('station')->onDelete('cascade');
         });
         // Schema::table('detail_transaksi', function ($table) {
         //     $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');

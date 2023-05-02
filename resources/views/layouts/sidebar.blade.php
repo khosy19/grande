@@ -61,6 +61,13 @@
                 </a>
             </li>
             <li
+                class="{{ (request()->is(Auth::user()->level.'/management/station*')) ? 'active' : '' }}">
+                <a href="{{ url(Auth::user()->level.'/management/station') }}">
+                    <i class="material-icons">manage_account</i>
+                    <p>Data Station</p>
+                </a>
+            </li>
+            <li
                 class="{{ (request()->is(Auth::user()->level.'/management/transaksi*')) ? 'active' : '' }}">
                 <a href="{{ url(Auth::user()->level.'/management/transaksi') }}">
                     <i class="material-icons">receipt_long</i>

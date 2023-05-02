@@ -17,11 +17,8 @@ class CreateAntrianTable extends Migration
             $table->increments('id_antrian')->unsigned();
             $table->integer('id_transaksi')->unsigned()->index();
             $table->integer('id_users')->unsigned()->index();
-            // $table->integer('id_users')->unsigned()->index();
-            $table->integer('jumlah_antrian')->nullable();
             $table->timestamp('waktu_masuk')->useCurrent();
             $table->timestamp('waktu_keluar')->nullable();
-            // $table->
             $table->timestamps();
         });
 
@@ -32,9 +29,6 @@ class CreateAntrianTable extends Migration
         Schema::table('antrian', function ($table) {
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
         });
-        // Schema::table('detail_transaksi', function ($table) {
-        //     $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
-        // });
     }
 
     /**

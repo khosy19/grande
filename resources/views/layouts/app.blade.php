@@ -156,6 +156,9 @@
 <script src="{{ url('/assets/js/jquery.tagsinput.js') }}"></script>
 <!-- Material Dashboard javascript methods -->
 <script src="{{ url('/assets/js/material-dashboard.js') }}"></script>
+{{-- Sweet alert baru --}}
+{{-- <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('vendor/sweetalert/sweetalert.css') }}"> --}}
 
 {{-- <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ url('/assets/js/demo.js') }}"></script> --}}

@@ -11,9 +11,13 @@ class UsersController extends Controller
 {
     public function index(){
         $data = User::wherelevel('admin')->get();
+        // $data2 = User::wherelevel('produksi')->get();
+        // $data3 = User::wherelevel('kasir')->get();
 
         return view('admin.user_list',[
             'data' => $data,
+            // 'data' => $data2,
+            // 'data' => $data3,
         ]);
     }
 

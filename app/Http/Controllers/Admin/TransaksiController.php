@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Detail_transaksi;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class TransaksiController extends Controller
 {
@@ -48,6 +50,8 @@ class TransaksiController extends Controller
                 // ->join('users', 'users.id', '=', 'detail_transaksi.id_users')
                 ->where('detail_transaksi.id_transaksi', '=', $id)
                 ->get();
+        $detail2 = Detail_transaksi::all();
+        
                   
         return view('admin.transaksi_detail', [
             'detail' => $detail,
@@ -62,7 +66,7 @@ class TransaksiController extends Controller
         $data = Transaksi::find($id);
         $data->status    = $request->finish;
         $data->save();
-
+        Alert::success('Success Title', 'Success Message');
         $request->session()->flash('info', 'Status Transaksi Berhasil Diubah');
         return redirect('/admin/management/transaksi');
     }

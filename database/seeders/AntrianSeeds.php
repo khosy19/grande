@@ -23,7 +23,6 @@ class AntrianSeeds extends Seeder
             'id_antrian'                =>  1,
             'id_transaksi'              =>  1,
             'id_users'                  =>  1,
-            'jumlah_antrian'            =>  1,
             'waktu_masuk'               =>  now(),
             'waktu_keluar'              =>  now(),
         ]);

@@ -13,7 +13,6 @@ class Antrian extends Model
     protected $fillable = [
         'id_transaksi',
         'id_users',
-        'jumlah_antrian',
         'waktu_masuk',
         'waktu_keluar',
     ];

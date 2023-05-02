@@ -25,6 +25,7 @@ class TransaksiSeeds extends Seeder
             'total'         =>  25000,
             'metode'        =>  2,
             'status'        =>  1,
+            'kode_referensi'=>  102,
         ]);
         Transaksi::create([
             'invoice'       =>  'TRANS/2023/Jan/001',
