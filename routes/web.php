@@ -42,9 +42,9 @@ Route::middleware('auth', 'validatelevels:admin')->group(function () {
     Route::get('/admin/management/food/delete/{id}', [Admin\FoodController::class, 'delete'])->name('delete_food');
 
     Route::get('/admin/management/station', [Admin\StationController::class, 'index'])->name('station');
-    Route::view('/admin/management/station/add', 'admin.station_add')->name('add_station');
     Route::get('/admin/management/station/edit/{id}', [Admin\StationController::class, 'edit'])->name('edit_station');
-    Route::get('/admin/management/station/delete/{id}', [Admin\StationController::class, 'delete'])->name('delete_station');
+    // Route::view('/admin/management/station/add', 'admin.station_add')->name('add_station');
+    // Route::get('/admin/management/station/delete/{id}', [Admin\StationController::class, 'delete'])->name('delete_station');
     // Route::get('/admin/management/antrian/detail/{id}', [Admin\AntrianController::class, 'antriandetail'])->name('transaksi_detail');
     
     Route::get('/admin/management/transaksi', [Admin\TransaksiController::class, 'index'])->name('transaksi');
