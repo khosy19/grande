@@ -13,13 +13,22 @@
                 <div class="card card-product">
                     <div class="card-content">
                         <table>
+                            {{-- <thead>
+                                <th>Nama Makanan</th>
+                                <th>Jumlah</th>
+                            </thead> --}}
                                 @foreach($detail as $val)
                                 <tr>
-                                    <td>- &nbsp;</td>
                                     <td>&nbsp;{{ $val->nama_makanan }}</td>
                                     <td>&nbsp;x&nbsp;{{ $val->jumlah }}</td>
                                 </tr>
                                 @endforeach
+                                {{--                                 
+                                @foreach ($waktu as $valwaktu)
+                                <td>&nbsp;{{ $valwaktu->waktu_pesan }}</td>
+                                <td>&nbsp;{{ $valwaktu->waktu_tunggu }}</td>
+                                <td>&nbsp;{{ $valwaktu->waktu_selesai }}</td>
+                                @endforeach --}}
                             </table>
                         </div>
                     </div>

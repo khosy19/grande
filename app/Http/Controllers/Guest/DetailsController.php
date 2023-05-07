@@ -22,27 +22,30 @@ class DetailsController extends Controller
             'room' => $room,
             'nama' => $nama,
             'total'=> $total,
-            'waktu_pesan' =>$waktu_pesan,
-            'waktu_selesai' =>$waktu_selesai,
         ]);
     }
 
-    static function tambah_detail_transaksi($nama_items,$harga,$jumlah,$waktu_menu,$waktu_pesan,$waktu_selesai){
+    static function tambah_detail_transaksi($nama_items,$harga,$jumlah,$waktu_menu,$waktu_pesan,$waktu_selesai,$waktu_tunggu){
+        $waktu_pesan->waktu_pesan = now();
         Items::create([
             'nama_items'    => $nama_items,
             'harga_items'   => $harga,
             'jumlah'        => $jumlah,
             'waktu_menu'    => $waktu_menu,
+            'waktu_pesan'   =>$waktu_pesan,
+            'waktu_tunggu'  =>$waktu_tunggu,
+            'waktu_selesai' =>$waktu_selesai,
         ]);
     }
 
     public function tambah_cart($id_items, Request $request){
         $this->validate($request,[
             'qty' => 'required|numeric',
+            // 'waktu_pesan'   => 'required'
         ]);
         $qty = $request->qty;
         $waktu_pesan = $request->waktu_pesan;
-        $waktu_selesai = $request->waktu_selesai;
+        // $waktu_selesai = $request->waktu_selesai;
 
         $data = Session::get('cart');
         $items = Items::where('id_items', $id_items)->get();
@@ -52,8 +55,9 @@ class DetailsController extends Controller
             'nama_items'    => $items[0]->nama_makanan,
             'harga_items'   => $items[0]->harga,
             'jumlah'        => $qty,
-            'waktu_pesan'    =>  $waktu_pesan,
-            'waktu_selesai'    => $waktu_selesai,
+            // 'waktu_pesan'   => $waktu_pesan,
+            // 'waktu_pesan'    =>  $waktu_pesan,
+            // 'waktu_selesai'    => $waktu_selesai,
         ];
 
         Session::put('cart', $data);

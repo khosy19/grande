@@ -27,9 +27,14 @@ class HistoryController extends Controller
         // ->join('users', 'users.id', '=', 'detail_transaksi.id_users')
         ->where('detail_transaksi.id_transaksi', '=', $id)
                   ->get();
+        // $waktu = Detail_transaksi::select('waktu_pesan')->get();
+        // $waktu -> waktu_pesan = $id->waktu_pesan ;
+        // $waktu -> waktu_tunggu = $id->waktu_tunggu ;
+        // $waktu -> waktu_selesai = $id->waktu_selesai ;
                   
         return view('guest.history_detail', [
             'detail' => $detail,
+            // 'waktu_pesan' => $waktu,
         ]);
     }
 }
