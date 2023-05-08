@@ -120,19 +120,19 @@
             event.preventDefault();
             const url = $(this).attr('href');
             swal({
-                title: 'Are you sure ?',
-                text: 'Deleted data cannot be recovered!',
+                title: 'Konfirmasi Pesanan',
+                text: 'Apakah anda yakin menu sudah siap diantar?',
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, Clear data!',
-                cancelButtonText: 'No, Leave data',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
                 confirmButtonClass: "btn btn-success",
                 cancelButtonClass: "btn btn-danger",
                 buttonsStyling: false
             }).then(function (value) {
                 swal({
-                    title: 'Deleted data!',
-                    text: 'Data deleted successfully!.',
+                    title: 'Status Pesanan Diubah!',
+                    text: 'Segera antarkan pesanan pelanggan sesuai nomor meja!.',
                     type: 'success',
                     confirmButtonClass: "btn btn-success",
                     buttonsStyling: false
@@ -146,8 +146,8 @@
                 // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                 if (dismiss === 'cancel') {
                     swal({
-                        title: 'Canceled',
-                        text: 'Data is not deleted :)',
+                        title: 'Dicancel',
+                        text: 'Status Pesanan Belum diganti',
                         type: 'error',
                         confirmButtonClass: "btn btn-info",
                         buttonsStyling: false
@@ -157,40 +157,42 @@
         });
 
         // npm sweet cc
-        $('.cc-input').on('click', function (event) {
-        Swal.fire({
-        title: 'Masukkan Kode Referensi Kartu Kredit',
-        input: 'text',
-        inputAttributes: {
-            autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        confirmButtonText: 'Look up',
-        showLoaderOnConfirm: true,
-        preConfirm: (login) => {
-            return fetch(`//api.github.com/users/${login}`)
-            .then(response => {
-                if (!response.ok) {
-                throw new Error(response.statusText)
-                }
-                return response.json()
-            })
-            .catch(error => {
-                Swal.showValidationMessage(
-                `Request failed: ${error}`
-                )
-            })
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-        }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-            title: `${result.value.login}'s avatar`,
-            imageUrl: result.value.avatar_url
-            })
-        }
-        })
-    });
+    //     $('.cc-input').on('click', function (event) {
+    //     Swal.fire({
+    //     title: 'Masukkan Kode Referensi Kartu Kredit',
+    //     input: 'text',
+    //     inputAttributes: {
+    //         autocapitalize: 'off'
+    //     },
+    //     showCancelButton: true,
+    //     confirmButtonText: 'Look up',
+    //     showLoaderOnConfirm: true,
+    //     preConfirm: (login) => {
+    //         return fetch(`//api.github.com/users/${login}`)
+    //         .then(response => {
+    //             if (!response.ok) {
+    //             throw new Error(response.statusText)
+    //             }
+    //             return response.json()
+    //         })
+    //         .catch(error => {
+    //             Swal.showValidationMessage(
+    //             `Request failed: ${error}`
+    //             )
+    //         })
+    //     },
+    //     allowOutsideClick: () => !Swal.isLoading()
+    //     }).then((result) => {
+    //     if (result.isConfirmed) {
+    //         Swal.fire({
+    //         title: `${result.value.login}'s avatar`,
+    //         imageUrl: result.value.avatar_url
+    //         })
+    //     }
+    //     })
+    // });
+
+
     //     $('.cc-ref').on('click', function (event) {
     //     Swal.fire({
     //     title: 'Masukkan Kode Referensi Kartu Kredit',

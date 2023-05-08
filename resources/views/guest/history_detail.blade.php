@@ -19,8 +19,12 @@
                             </thead> --}}
                                 @foreach($detail as $val)
                                 <tr>
-                                    <td>&nbsp;{{ $val->nama_makanan }}</td>
-                                    <td>&nbsp;x&nbsp;{{ $val->jumlah }}</td>
+                                    <br>
+                                    <p> Waktu Pesan :
+                                        <td>&nbsp;x&nbsp;{{ $val->waktu_pesan }}</td>
+                                        <td>&nbsp;{{ $val->nama_makanan }}</td>
+                                        <td>&nbsp;x&nbsp;{{ $val->jumlah }}</td>
+                                    </p>
                                 </tr>
                                 @endforeach
                                 {{--                                 

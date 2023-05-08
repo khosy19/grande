@@ -66,7 +66,7 @@ class TransaksiController extends Controller
         $data = Transaksi::find($id);
         $data->status    = $request->finish;
         $data->save();
-        Alert::success('Success Title', 'Success Message');
+        // Alert::success('Success Title', 'Success Message');
         $request->session()->flash('info', 'Status Transaksi Berhasil Diubah');
         return redirect('/admin/management/transaksi');
     }
