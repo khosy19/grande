@@ -37,16 +37,16 @@ class TransaksiController extends Controller
         // $waktu_pesan =
         // $waktu_antri =
         // $waktu_tiba =
-
+        
         foreach($cart as $item =>$val){
             $id_items = $val['id_items'];
             $jumlah = $val['jumlah'];
 
             Detail_transaksi::create([
                 'id_transaksi' => $id_transaksi,
-                'id_items'   => $id_items,
-                'jumlah'     => $jumlah,
-                'waktu_menu' => $request->waktu_menu,
+                'id_items'     => $id_items,
+                'jumlah'       => $jumlah,
+                'waktu_pesan'  => now(),
 
             ]);
         }

@@ -26,7 +26,7 @@ class DetailsController extends Controller
     }
 
     static function tambah_detail_transaksi($nama_items,$harga,$jumlah,$waktu_menu,$waktu_pesan,$waktu_selesai,$waktu_tunggu){
-        // $waktu_pesan->waktu_pesan = now();
+        $waktu_pesan = now();
         // $waktu_tunggu->waktu_menu+(waktu_tunggu+jml_antrian)/$jml_pekerja;
         // $waktu_selesai->waktu_selesai = now;
         Items::create([
@@ -40,10 +40,10 @@ class DetailsController extends Controller
         ]);
     }
 
+
     public function tambah_cart($id_items, Request $request){
         $this->validate($request,[
             'qty' => 'required|numeric',
-            // 'waktu_pesan'   => 'required'
         ]);
         $qty = $request->qty;
         $waktu_pesan = $request->waktu_pesan;
@@ -54,23 +54,6 @@ class DetailsController extends Controller
         $waktu_pesan = Session::get('waktu_pesan');
         $items = Items::where('id_items', $id_items)->get();
 
-        //explode
-        $datetime = "2023-05-08 10:30:45"; // contoh datetime dari database
-        $datetime_array = explode(" ", $datetime);
-        // $datetime = ""; // contoh datetime dari database
-        // $datetime_array = explode(" ",date('H:i:s',$datetime) );
-
-        // Ambil nilai jam, menit, dan detik dari bagian waktu
-        $time_array = explode(":", $datetime_array[1]);
-        $hour = $time_array[0];
-        $minute = $time_array[1];
-        $second = $time_array[2];
-
-        // Cetak jam, menit, dan detik yang telah diambil
-        echo "Jam: " . $hour . "<br>";
-        echo "Menit: " . $minute . "<br>";
-        echo "Detik: " . $second . "<br>";
-        //
 
         $data[$items[0]->id_items] = [
             'id_items'      => $items[0]->id_items,
@@ -99,6 +82,8 @@ class DetailsController extends Controller
 
     public function cart(){
         $cart = Session::get('cart');
+        $waktu_pesan = now();
+        
         return view('guest.transaksi', [
             'cart' => $cart,
         ]);

@@ -26,11 +26,22 @@ class HistoryController extends Controller
         $detail = Detail_transaksi::join('items', 'items.id_items' , '=', 'detail_transaksi.id_items')
         // ->join('users', 'users.id', '=', 'detail_transaksi.id_users')
         ->where('detail_transaksi.id_transaksi', '=', $id)
-                  ->get();
-        // $waktu = Detail_transaksi::select('waktu_pesan')->get();
-        // $waktu -> waktu_pesan = $id->waktu_pesan ;
-        // $waktu -> waktu_tunggu = $id->waktu_tunggu ;
-        // $waktu -> waktu_selesai = $id->waktu_selesai ;
+        ->get();
+
+        // return $detail;
+        $datetime = $detail[0]["waktu_pesan"]; // contoh datetime dari database
+        $datetime_array = explode(" ", $datetime);
+
+        // Ambil nilai jam, menit, dan detik dari bagian waktu
+        $time_array = explode(":", $datetime_array[1]);
+        $hour = $time_array[0];
+        $minute = $time_array[1]+5;
+        $second = $time_array[2];
+        // return $minute.':'.$second;
+        // Cetak jam, menit, dan detik yang telah diambil
+        // echo "Jam: " . $hour . "<br>";
+        // echo "Menit: " . $minute . "<br>";
+        // echo "Detik: " . $second . "<br>";
                   
         return view('guest.history_detail', [
             'detail' => $detail,
