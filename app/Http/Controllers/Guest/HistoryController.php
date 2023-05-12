@@ -7,6 +7,7 @@ use App\Models\Transaksi;
 use App\Models\Detail_transaksi;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HistoryController extends Controller
 {
@@ -17,6 +18,7 @@ class HistoryController extends Controller
                     ->where('users.id', '=', $id_user) 
                     ->get(); 
         $unik = $transaksi->unique('id_transaksi');
+        // return DB::table('items')->sum('waktu_menu');
         return view('guest.history', [
             'transaksi' => $unik,
         ]);
@@ -30,6 +32,11 @@ class HistoryController extends Controller
 
         // return $detail;
         $datetime = $detail[0]["waktu_pesan"]; // contoh datetime dari database
+        // $detail =[
+        //                     0 => "waktu_pesan",
+        //                     1 => "waktu_tunggu",
+        //                     2 => "waktu_selesai",
+        //                     ];
         $datetime_array = explode(" ", $datetime);
 
         // Ambil nilai jam, menit, dan detik dari bagian waktu
@@ -42,7 +49,9 @@ class HistoryController extends Controller
         // echo "Jam: " . $hour . "<br>";
         // echo "Menit: " . $minute . "<br>";
         // echo "Detik: " . $second . "<br>";
-                  
+        // return $minute;
+        $waktu_menu = $detail[0]["waktu_menu"];
+        // $waktu_tunggu = count $waktu_menu;        
         return view('guest.history_detail', [
             'detail' => $detail,
             // 'waktu_pesan' => $waktu,

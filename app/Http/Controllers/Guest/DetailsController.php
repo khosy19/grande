@@ -47,11 +47,14 @@ class DetailsController extends Controller
         ]);
         $qty = $request->qty;
         $waktu_pesan = $request->waktu_pesan;
-        $waktu_tunggu = $request->waktu_tunggu;
+        $waktu_menu = $request->waktu_menu;
+        $waktu_tunggu = $waktu_menu;
         $waktu_selesai = $request->waktu_selesai;
 
         $data = Session::get('cart');
         $waktu_pesan = Session::get('waktu_pesan');
+        $waktu_menu = Session::get('waktu_menu');
+        $waktu_tunggu = Session::get('waktu_tunggu');
         $items = Items::where('id_items', $id_items)->get();
 
 
@@ -83,6 +86,7 @@ class DetailsController extends Controller
     public function cart(){
         $cart = Session::get('cart');
         $waktu_pesan = now();
+        // $waktu_tunggu = $waktu_menu();
         
         return view('guest.transaksi', [
             'cart' => $cart,

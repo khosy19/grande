@@ -14,6 +14,9 @@
                     <div class="card card-product">
                         <div class="card-content">
                             <table>
+                                <p>====={{ $val->created_at }}=====
+                                </p>
+
                                 <tr>
                                     <td>Invoice&nbsp;</td>
                                     <td>:</td>
@@ -30,11 +33,47 @@
                                     <td>&nbsp;{{ $val->room }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Transaction&nbsp;</td>
+                                    <td>Total&nbsp;</td>
                                     <td>:</td>
                                     <td>&nbsp;Rp {{ number_format($val->total,2,',','.')}}</td>
                                 </tr>
                             </table>
+                            <br>
+                                <p>
+                                ========Waiting Time========
+                                </p>
+                             <table>
+                                <tr>
+                                    <td>Food&nbsp;</td>
+                                    <td>:</td>
+                                    {{-- <td>&nbsp;{{ $waktu_menu }}</td> --}}
+                                    <td>&nbsp;{{ !empty($val->id_items) && !empty ($val->id_items->waktu_menu) ? $val->id_items->waktu_menu->tipe(1).'' : '' }}</td>
+                                    {{-- <td>&nbsp;{{ !empty($val->id_items) ? $val->id_items->waktu_menu->tipe(1).'' : '' }}</td> --}}
+                                </tr>
+                                <tr>
+                                    <td>Drinks&nbsp;</td>
+                                    <td>:</td>
+                                    <td>&nbsp;{{ $val->waktu_menu ? $val->waktu_menu->tipe(2).'' : '' }}</td>
+                                    {{-- <td>&nbsp;{{ $val->waktu_menu->tipe(2) }}Hours :0 Minutes: 5</td> --}}
+                                </tr>
+                                <tr>
+                                    <td>Finish at&nbsp;</td>
+                                    <td>:</td>
+                                    <td>
+                                    <td>&nbsp;{{ $val->waktu_selesai}}</td>
+                                    &nbsp;
+                                    {{-- @php
+                                        if (!$val->$updated_at == 0) {
+                                            ""
+                                        }else{
+                                             $val->$updated_at;
+                                        }
+                                    @endphp --}}
+                                    </td>
+                                    {{-- <td>&nbsp;{{ $val->waktu_menu->tipe(2) }}Hours :0 Minutes: 5</td> --}}
+                                </tr>
+
+                             </table>
                         </div>
                         <div class="card-footer pull-right">
                             @if ($val->status == 1)
