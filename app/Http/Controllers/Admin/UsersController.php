@@ -10,14 +10,12 @@ use App\Models\User;
 class UsersController extends Controller
 {
     public function index(){
-        $data = User::wherelevel('admin')->get();
-        // $data2 = User::wherelevel('produksi')->get();
-        // $data3 = User::wherelevel('kasir')->get();
+        $data = User::where('level', 'admin')
+                        ->orwhere('level', 'kasir')
+                        ->orwhere('level', 'produksi')->get();
 
         return view('admin.user_list',[
             'data' => $data,
-            // 'data' => $data2,
-            // 'data' => $data3,
         ]);
     }
 
@@ -26,6 +24,7 @@ class UsersController extends Controller
             'name'  => 'required|max:255|alpha',
             'email' => 'required|max:100|email',
             'password'  => 'required|confirmed',
+            'level' => 'required',
             // 'link'  => 'required',
             'password_confirmation' => 'required|same:password',
         ]);
@@ -33,9 +32,10 @@ class UsersController extends Controller
         User::create([
             'name' => $request->name,
             'room' => $request->email,
-            'level' => 'admin',
+            'level' => $request->level,
             'password' => bcrypt($request->password),
             // 'link'  => 'required',
+            'active' => 1,
             'remember_token' => Str::random(60),
         ]);
 

@@ -41,6 +41,14 @@
                     <input class="form-control" name="password_confirmation" id="password_confirmation" type="password"
                         required="true" equalTo="#registerPassword" />
                 </div>
+                <div class="dropdown">
+                    <label for="control-label">Level</label>
+                    <select id="level" name="level">
+                        <option value="kasir">Kasir</option>
+                        <option value="produksi">Produksi</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <small>*</small> Required fields</div>
                 <div class="form-footer">

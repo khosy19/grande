@@ -39,25 +39,7 @@ class HistoryController extends Controller
         $hour = $time_array[0];
         $minute = $time_array[1]+5;
         $second = $time_array[2];
-        // return $minute.':'.$second;
-        // Cetak jam, menit, dan detik yang telah diambil
-        // echo "Jam: " . $hour . "<br>";
-        // echo "Menit: " . $minute . "<br>";
-        // echo "Detik: " . $second . "<br>";
-        // return $minute;
 
-       
-
-
-        // return $pelangganPesan;
-
-        // return view('guest.history_detail',[
-        //     'pelangganPesan' => $historyDetail,
-        // ]);
-
-
-
-        $waktu_menu = $detail[0]["waktu_menu"];
         // $waktu_tunggu = count $waktu_menu;        
         return view('guest.history_detail', [
             'detail' => $detail,
@@ -67,7 +49,7 @@ class HistoryController extends Controller
     }
 
     public function hitungWaktuTunggu($waktuselesai){
-        $waktuselesai = Detail_transaksi::join('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.id_detail_transaksi')
+        $waktuselesai = Detail_transaksi::join('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.id_transaksi')
         ->where('transaksi.status',1) 
         ->get();
         $n = count($waktuselesai);

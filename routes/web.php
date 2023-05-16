@@ -80,3 +80,17 @@ Route::middleware('auth', 'validatelevels:guest')->group(function () {
     Route::get('/guest/history', [Guest\HistoryController::class, 'index'])->name('history');
     Route::get('/guest/history/detail/{id}', [Guest\HistoryController::class, 'detail'])->name('history_detail');
 });
+
+// produksi
+Route::middleware('auth', 'validatelevels:produksi')->group(function () {
+    Route::get('/produksi', function () {
+        return 'ini produksi';
+    });
+});
+
+// kasir
+Route::middleware('auth', 'validatelevels:kasir')->group(function () {
+    Route::get('/produksi', function () {
+        return 'ini kasir';
+    });
+});

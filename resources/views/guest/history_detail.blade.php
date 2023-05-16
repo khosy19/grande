@@ -41,7 +41,7 @@
                                                 echo "Pelanggan harus menunggu selama".$wt[$key]." menit";
                                             }
                                         @endphp --}}
-                                        <td>&nbsp;{{ $val->pelanggan_pesan }}&nbsp;Menit</td>
+                                        <td>&nbsp;{{ ($val->jumlah*$val->waktu_menu) }}&nbsp;Menit</td>
                                     {{-- </p> --}}
                                 </tr>
                                 @endforeach
