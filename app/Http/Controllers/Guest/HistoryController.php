@@ -32,11 +32,6 @@ class HistoryController extends Controller
 
         // return $detail;
         $datetime = $detail[0]["waktu_pesan"]; // contoh datetime dari database
-        // $detail =[
-        //                     0 => "waktu_pesan",
-        //                     1 => "waktu_tunggu",
-        //                     2 => "waktu_selesai",
-        //                     ];
         $datetime_array = explode(" ", $datetime);
 
         // Ambil nilai jam, menit, dan detik dari bagian waktu
@@ -50,11 +45,41 @@ class HistoryController extends Controller
         // echo "Menit: " . $minute . "<br>";
         // echo "Detik: " . $second . "<br>";
         // return $minute;
+
+       
+
+
+        // return $pelangganPesan;
+
+        // return view('guest.history_detail',[
+        //     'pelangganPesan' => $historyDetail,
+        // ]);
+
+
+
         $waktu_menu = $detail[0]["waktu_menu"];
         // $waktu_tunggu = count $waktu_menu;        
         return view('guest.history_detail', [
             'detail' => $detail,
+            // 'pelanggan_pesan' => $pelangganPesan,
             // 'waktu_pesan' => $waktu,
         ]);
+    }
+
+    public function hitungWaktuTunggu($waktuselesai){
+        $waktuselesai = Detail_transaksi::join('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.id_detail_transaksi')
+        ->where('transaksi.status',1) 
+        ->get();
+        $n = count($waktuselesai);
+        
+        $wt = array_fill(0, $n, 0); // inisialisasi array wt dengan nol
+
+        // hitung lama waktu tunggu
+        for ($i = 1; $i < $n; $i++) {
+            $wt[$i] = $waktuselesai[$i-1]->waktu_menu + $wt[$i-1] - $waktuselesai[$i]->waktu_tunggu;
+        }
+
+        // kembalikan array wt
+        return $wt;
     }
 }

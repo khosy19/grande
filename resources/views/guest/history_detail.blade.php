@@ -20,6 +20,7 @@
                                     <th class="disabled-sorting">Nama Menu</th>
                                     <th class="disabled-sorting">Jumlah</th>
                                     <th class="disabled-sorting">Waktu Menu</th>
+                                    <th class="disabled-sorting">Waktu Selesai</th>
                                     {{-- <th class="disabled-sorting">Waktu Tunggu</th>
                                     <th class="disabled-sorting">Waktu Selesai</th> --}}
                                 </tr>
@@ -30,12 +31,17 @@
                             </thead> --}}                            
                                 @foreach($detail as $val)
                                 <tr>
-                                    {{-- <br> --}}
-                                    {{-- <p> --}}
                                         <td>&nbsp;{{ $val->waktu_pesan }}</td>
                                         <td>&nbsp;{{ $val->nama_makanan }}</td>
                                         <td>&nbsp;x&nbsp;{{ $val->jumlah }}</td>
                                         <td>&nbsp;{{ $val->waktu_menu }}&nbsp;Menit</td>
+                                        {{-- @php
+                                            $wt = $this->hitungWaktuTunggu();
+                                            foreach ($pelangganPesan as $key => $value) {
+                                                echo "Pelanggan harus menunggu selama".$wt[$key]." menit";
+                                            }
+                                        @endphp --}}
+                                        <td>&nbsp;{{ $val->pelanggan_pesan }}&nbsp;Menit</td>
                                     {{-- </p> --}}
                                 </tr>
                                 @endforeach

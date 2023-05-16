@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Models\Detail_transaksi;
 use App\Models\Items;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -91,5 +92,17 @@ class DetailsController extends Controller
         return view('guest.transaksi', [
             'cart' => $cart,
         ]);
+    }
+
+    public function WaktuTunggu(){
+        $pelangganPesan = Detail_transaksi::join('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.id_detail_transaksi')
+        // ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')    
+        ->where('status.id', '=', 1) 
+        ->get();
+
+        return view('guest.history_detail',[
+            'pelangganPesan' => $historyDetail,
+        ]);
+        // return $pelangganPesan;
     }
 }
