@@ -15,7 +15,6 @@
                         <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="2 " width="100%" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th class="disabled-sorting">Waktu Pesan</th>
                                     <th class="disabled-sorting">Nama Menu</th>
                                     <th class="disabled-sorting">Jumlah</th>
                                     <th class="disabled-sorting">Waktu Menu</th>
@@ -25,20 +24,17 @@
                                     <th class="disabled-sorting">Finish Time</th>
                                 </tr>
                             </thead>                     
-                                @foreach($antrian as $detail=>$val)
                                 <tr>
-                                        <td>&nbsp;{{ $detail=>$val->waktu_pesan }}</td>
-                                        <td>&nbsp;{{ $detail=>$val->nama_makanan }}</td>
-                                        <td>&nbsp;x&nbsp;{{ $detail=>$val->jumlah }}</td>
-                                        <td>&nbsp;x&nbsp;{{ $detail=>$val->waktu_menu }}</td>                                                       
-                                        <td>&nbsp;x&nbsp;{{ $detail=>$val->waktu_tiba }}</td>  
-                                        <td>&nbsp;x&nbsp;{{ $detail=>$val->start_time }}</td>                                                       
+                                        <td>&nbsp;{{ nama_makanan }}</td>
+                                        <td>&nbsp;x&nbsp;{{jumlah }}</td>
+                                        <td>&nbsp;{{ waktu_menu }}</td>                                                       
+                                        <td>&nbsp;{{ waktu_tiba }}</td>  
+                                        <td>&nbsp;{{ start_time }}</td>                                                       
                                         {{-- burst_time--}}
-                                        <td>&nbsp;{{ ($detail=>$val->jumlah*$detail=>$val->waktu_menu) }}&nbsp;Menit</td>
+                                        <td>&nbsp;{{ (jumlah*waktu_menu) }}&nbsp;Menit</td>
                                         {{-- finish_time--}}
-                                        <td>&nbsp;{{ ($detail=>$val->burst_time+$detail=>$val->start_time) }}&nbsp;Menit</td>
+                                        <td>&nbsp;{{ (burst_time+start_time) }}&nbsp;Menit</td>
                                 </tr>
-                                @endforeach
                                 {{--                                 
 
                                     catatan

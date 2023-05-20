@@ -61,11 +61,11 @@ class HistoryController extends Controller
         
         return $hour_waktu_tiba;
         // $waktu_tunggu = count $waktu_menu;        
-        // return view('guest.history_detail', [
-        //     'detail' => $antrian_detail,
-        //     // 'pelanggan_pesan' => $pelangganPesan,
-        //     // 'waktu_pesan' => $waktu,
-        // ]);
+        return view('guest.history_detail', [
+            'detail' => $antrian_detail,
+            // 'pelanggan_pesan' => $pelangganPesan,
+            // 'waktu_pesan' => $waktu,
+        ]);
     }
 
     public function hitungWaktuTunggu($waktuselesai){
