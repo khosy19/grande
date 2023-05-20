@@ -32,18 +32,18 @@ class HistoryController extends Controller
         // ->get();
        
         $antrian_detail = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi' , '=', 'antrian.id_detail_transaksi')
-        ->join('station', 'station.id_station', '=', 'antrian.id_station')
-        ->join('users', 'users.id', '=', 'antrian.id_antrian')
-        ->select('antrian.*', 'waktu_tiba', 'burst_time', 'start_time', 'finish_time')
+        ->leftjoin('station', 'station.id_station', '=', 'antrian.id_station')
+        ->leftjoin('users', 'users.id', '=', 'antrian.id_antrian')
+        ->leftjoin('items', 'items.id_items', '=', 'detail_transaksi.id_items')
+        ->select('antrian.*', 'items.nama_makanan', 'items.waktu_menu')
         ->where('detail_transaksi.id_transaksi', '=', $id)
-        ->get();
+        ->first();
 
-        // return $antrian_detail;
-
-        $datetime_waktu_tiba = $antrian_detail[0]["waktu_tiba"];
-        $datetime_burst_time = $antrian_detail[1]["burst_time"];
-        $datetime_start_time = $antrian_detail[2]["start_time"];
-        $datetime_finish_time = $antrian_detail[3]["finish_time"];
+        
+        $datetime_waktu_tiba = $antrian_detail->waktu_tiba;
+        $datetime_burst_time = $antrian_detail->burst_time;
+        $datetime_start_time = $antrian_detail->start_time;
+        $datetime_finish_time = $antrian_detail->finish_time;
         $datetime_array_waktu_tiba = explode(" ", $datetime_waktu_tiba);
         $datetime_array_burst_time = explode(" ", $datetime_burst_time);
         $datetime_array_start_time = explode(" ", $datetime_start_time);
@@ -55,16 +55,17 @@ class HistoryController extends Controller
         $time_array_start_time = explode(":", $datetime_array_start_time[1]);
         $time_array_finish_time = explode(":", $datetime_array_finish_time[1]);
         
-        $hour_waktu_tiba = $time_array_waktu_tiba[0];
-        $minute_waktu_tiba = $time_array_waktu_tiba[1];
-        $second_waktu_tiba = $time_array_waktu_tiba[2];
+        // $hour_waktu_tiba = $time_array_waktu_tiba[0];
+        // $minute_waktu_tiba = $time_array_waktu_tiba[1];
+        // $second_waktu_tiba = $time_array_waktu_tiba[2];
         
-        return $hour_waktu_tiba;
         // $waktu_tunggu = count $waktu_menu;        
         return view('guest.history_detail', [
             'detail' => $antrian_detail,
-            // 'pelanggan_pesan' => $pelangganPesan,
-            // 'waktu_pesan' => $waktu,
+            'tb' => $time_array_waktu_tiba,
+            'bt' => $time_array_burst_time,
+            'st' => $time_array_start_time,
+            'fin' => $time_array_finish_time,
         ]);
     }
 

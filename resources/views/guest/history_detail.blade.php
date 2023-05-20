@@ -25,15 +25,15 @@
                                 </tr>
                             </thead>                     
                                 <tr>
-                                        <td>&nbsp;{{ nama_makanan }}</td>
-                                        <td>&nbsp;x&nbsp;{{jumlah }}</td>
-                                        <td>&nbsp;{{ waktu_menu }}</td>                                                       
-                                        <td>&nbsp;{{ waktu_tiba }}</td>  
-                                        <td>&nbsp;{{ start_time }}</td>                                                       
+                                        <td>&nbsp;{{ $detail->nama_makanan }}</td>
+                                        <td>&nbsp;x&nbsp;{{ $detail->jumlah }}</td>
+                                        <td>&nbsp;{{ $detail->waktu_menu }}</td>                                                       
+                                        <td>&nbsp;{{ $tb[1] }}</td>  
+                                        <td>&nbsp;{{ $st[1] }}</td>                                                       
                                         {{-- burst_time--}}
-                                        <td>&nbsp;{{ (jumlah*waktu_menu) }}&nbsp;Menit</td>
+                                        <td>&nbsp;{{ ($detail->jumlah*$detail->waktu_menu) }}&nbsp;Menit</td>
                                         {{-- finish_time--}}
-                                        <td>&nbsp;{{ (burst_time+start_time) }}&nbsp;Menit</td>
+                                        <td>&nbsp;{{ ($bt[1]+$tb[1]) }}&nbsp;Menit</td>
                                 </tr>
                                 {{--                                 
 
