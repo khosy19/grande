@@ -17,12 +17,10 @@ class CreateDetailTransaksiTable extends Migration
             $table->increments('id_detail_transaksi')->unsigned();
             $table->integer('id_transaksi')->unsigned()->index();
             $table->integer('id_items')->unsigned()->index();
-            // $table->integer('id_station')->unsigned()->index();
-            // $table->integer('id_users')->unsigned()->index();
             $table->integer('jumlah');
-            $table->timestamp('waktu_pesan')->nullable();
-            $table->timestamp('waktu_tunggu')->nullable();
-            $table->timestamp('waktu_selesai')->nullable();
+            // $table->timestamp('waktu_pesan')->nullable();
+            // $table->timestamp('waktu_tunggu')->nullable();
+            // $table->timestamp('waktu_selesai')->nullable();
             $table->timestamps();
         });
 

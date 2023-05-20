@@ -46,7 +46,7 @@ class TransaksiController extends Controller
                 'id_transaksi' => $id_transaksi,
                 'id_items'     => $id_items,
                 'jumlah'       => $jumlah,
-                'waktu_pesan'  => now(),
+                'waktu_tiba'  => now(),
 
             ]);
         }

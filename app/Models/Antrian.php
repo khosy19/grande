@@ -11,9 +11,13 @@ class Antrian extends Model
     protected $primaryKey = 'id_antrian';
 
     protected $fillable = [
-        'id_transaksi',
+        'id_detail_transaksi',
+        'id_station',
         'id_users',
-        'waktu_masuk',
-        'waktu_keluar',
+        'waktu_tiba',
+        'start_time',
+        'burst_time',
+        'finish_time',
+        // 'tat',
     ];
 }

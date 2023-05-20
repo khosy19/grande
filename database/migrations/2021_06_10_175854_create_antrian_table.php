@@ -15,19 +15,29 @@ class CreateAntrianTable extends Migration
     {
         Schema::create('antrian', function (Blueprint $table) {
             $table->increments('id_antrian')->unsigned();
-            $table->integer('id_transaksi')->unsigned()->index();
+            $table->integer('id_detail_transaksi')->unsigned()->index();
+            $table->integer('id_station')->unsigned()->index();
+            // $table->integer('id_transaksi')->unsigned()->index();
             $table->integer('id_users')->unsigned()->index();
-            $table->timestamp('waktu_masuk')->useCurrent();
-            $table->timestamp('waktu_keluar')->nullable();
+            $table->timestamp('waktu_tiba')->nullable();
+            $table->timestamp('start_time')->nullable();
+            $table->timestamp('burst_time')->nullable();
+            $table->timestamp('finish_time')->nullable();
+            $table->timestamp('tat')->nullable();
+            $table->timestamp('waiting_time')->nullable();
+            // $table->timestamp('waktu_keluar')->nullable();
             $table->timestamps();
         });
 
         Schema::table('antrian', function ($table) {
-            $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi')->onDelete('cascade');
+            $table->foreign('id_detail_transaksi')->references('id_detail_transaksi')->on('detail_transaksi')->onDelete('cascade');
         });
 
         Schema::table('antrian', function ($table) {
             $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+        });
+        Schema::table('antrian', function ($table) {
+            $table->foreign('id_station')->references('id_station')->on('station')->onDelete('cascade');
         });
     }
 

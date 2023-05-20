@@ -21,10 +21,15 @@ class AntrianSeeds extends Seeder
         Antrian::truncate();
         Antrian::create([
             'id_antrian'                =>  1,
-            'id_transaksi'              =>  1,
+            'id_detail_transaksi'       =>  1,
             'id_users'                  =>  1,
-            'waktu_masuk'               =>  now(),
-            'waktu_keluar'              =>  now(),
+            'id_station'                =>  1,
+            'waktu_tiba'                =>  now(),
+            'start_time'                =>  now(),
+            'burst_time'                =>  now(),
+            'finish_time'               =>  now(),
+            'tat'                       =>  now(),
+            'waiting_time'              =>  now(),
         ]);
        
     }

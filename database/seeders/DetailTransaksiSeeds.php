@@ -27,9 +27,6 @@ class DetailTransaksiSeeds extends Seeder
             'id_items'                  =>  1,
             // 'id_station'                =>  1,
             'jumlah'                    =>  1,
-            'waktu_pesan'               =>  now(),
-            'waktu_tunggu'              =>  now(),
-            'waktu_selesai'             =>  now(),
         ]);
         Detail_transaksi::create([
             'id_detail_transaksi'       =>  2,
@@ -37,9 +34,6 @@ class DetailTransaksiSeeds extends Seeder
             'id_items'                  =>  9,
             // 'id_station'                =>  2,
             'jumlah'                    =>  1,
-            'waktu_pesan'               =>  now(),
-            'waktu_tunggu'              =>  now(),
-            'waktu_selesai'             =>  now(),
         ]);  
         Detail_transaksi::create([
             'id_detail_transaksi'       =>  3,
@@ -47,9 +41,6 @@ class DetailTransaksiSeeds extends Seeder
             'id_items'                  =>  1,
             // 'id_station'                =>  1,
             'jumlah'                    =>  1,
-            'waktu_pesan'               =>  now(),
-            'waktu_tunggu'              =>  now(),
-            'waktu_selesai'             =>  now(),
         ]);  
         Detail_transaksi::create([
             'id_detail_transaksi'       =>  4,
@@ -57,9 +48,9 @@ class DetailTransaksiSeeds extends Seeder
             'id_items'                  =>  9,
             // 'id_station'                =>  2,
             'jumlah'                    =>  1,
-            'waktu_pesan'               =>  now(),
-            'waktu_tunggu'              =>  now(),
-            'waktu_selesai'             =>  now(),
+            // 'waktu_pesan'               =>  now(),
+            // 'waktu_tunggu'              =>  now(),
+            // 'waktu_selesai'             =>  now(),
         ]);      
     }
 }
