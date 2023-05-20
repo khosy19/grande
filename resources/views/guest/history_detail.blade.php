@@ -28,7 +28,7 @@
                                         <td>&nbsp;{{ $detail->nama_makanan }}</td>
                                         <td>&nbsp;x&nbsp;{{ $detail->jumlah }}</td>
                                         <td>&nbsp;{{ $detail->waktu_menu }}</td>                                                       
-                                        <td>&nbsp;{{ $tb[1] }}</td>  
+                                        <td>&nbsp;{{ $tb[0].':'.$tb[1].':'.$tb[2] }}</td>  
                                         <td>&nbsp;{{ $st[1] }}</td>                                                       
                                         {{-- burst_time--}}
                                         <td>&nbsp;{{ ($detail->jumlah*$detail->waktu_menu) }}&nbsp;Menit</td>
