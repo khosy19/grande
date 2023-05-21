@@ -25,7 +25,7 @@
                                 <th>Items</th>
                                 <th>Price</th>
                                 <th>Qty</th>
-                                {{-- <th>Waktu Pesan</th> --}}
+                                <th>Waktu Tiba</th>
                                 <th>Action</th>
                                 <th></th>
                             </thead>
@@ -33,26 +33,26 @@
                                 <?php 
                                 $no = 1;
                                 $grandtotal = 0;
-                                // $waktu_pesan = 0;
                                 ?>
                                 @foreach($cart as $item =>$val)
-                                    <?php 
+                                <?php 
                                 $subtotal = $val['harga_items'] * $val['jumlah'];
                                 $grandtotal+=$subtotal;
+                                // $waktu_tiba = now();
                                 ?>
                                     <tr>
                                         <td>{{ $val['nama_items'] }}</td>
                                         <td>{{ number_format($val['harga_items'],2,',','.') }}
                                         </td>
                                         <td>{{ $val['jumlah'] }}</td>
-                                        {{-- <td>{{ $val['waktu_pesan'] }}</td> --}}
                                         <td>
                                             <a href="{{ route('hapus_cart', $val['id_items']) }}"
-                                                class="material-icons">highlight_off</a>
+                                            class="material-icons">highlight_off</a>
                                         </td>
                                     </tr>
-
-                                @endforeach
+                                    
+                                    @endforeach
+                                    {{-- <td>{{ $antrian->waktu_tiba }}</td> --}}
                             </tbody>
                         </table>
                         <hr>

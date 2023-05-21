@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Models\Antrian;
 use App\Models\Detail_transaksi;
 use App\Models\Items;
 use App\Models\Transaksi;
@@ -26,18 +27,23 @@ class DetailsController extends Controller
         ]);
     }
 
-    static function tambah_detail_transaksi($nama_items,$harga,$jumlah,$waktu_menu,$waktu_pesan,$waktu_selesai,$waktu_tunggu){
-        $waktu_pesan = now();
+    static function tambah_detail_transaksi($nama_items,$harga,$jumlah,$waktu_menu,$waktu_tiba, $start_time, $burst_time, $finish_time){
+        $waktu_tiba = now();
+        // $start_time = now();
+        // $burst_time = now();
+        // $finish_time = now();
         // $waktu_tunggu->waktu_menu+(waktu_tunggu+jml_antrian)/$jml_pekerja;
         // $waktu_selesai->waktu_selesai = now;
+        //Items
         Items::create([
             'nama_items'    => $nama_items,
             'harga_items'   => $harga,
             'jumlah'        => $jumlah,
             'waktu_menu'    => $waktu_menu,
-            'waktu_pesan'   =>$waktu_pesan,
-            'waktu_tunggu'  =>$waktu_tunggu,
-            'waktu_selesai' =>$waktu_selesai,
+            // 'waktu_tiba'    =>$waktu_tiba,
+            // 'start_time'    =>$start_time,
+            // 'burst_time'    =>$burst_time,
+            // 'finish_time'   =>$finish_time,
         ]);
     }
 
@@ -47,15 +53,18 @@ class DetailsController extends Controller
             'qty' => 'required|numeric',
         ]);
         $qty = $request->qty;
-        $waktu_tiba = $request->waktu_tiba;
         $waktu_menu = $request->waktu_menu;
-        $waktu_tunggu = $waktu_menu;
-        $waktu_selesai = $request->waktu_selesai;
+        $waktu_tiba = $request->waktu_tiba;
+        // $start_time = $request->start_time;
+        // $burst_time = $request->burst_time;
+        // $finish_time = $request->finish_time;
 
         $data = Session::get('cart');
-        $waktu_tiba = Session::get('waktu_tiba');
         $waktu_menu = Session::get('waktu_menu');
-        $waktu_tunggu = Session::get('waktu_tunggu');
+        // $waktu_tiba = Session::get('waktu_tiba');
+        // $start_time = Session::get('start_time');
+        // $burst_time = Session::get('burst_time');
+        // $finish_time = Session::get('finish_time');
         $items = Items::where('id_items', $id_items)->get();
 
 
@@ -64,9 +73,10 @@ class DetailsController extends Controller
             'nama_items'    => $items[0]->nama_makanan,
             'harga_items'   => $items[0]->harga,
             'jumlah'        => $qty,
-            'waktu_pesan'   => $waktu_pesan,
-            // 'waktu_tunggu'  => $waktu_tunggu,
-            // 'waktu_selesai' => $waktu_selesai,
+            // 'waktu_tiba'    => $waktu_tiba,
+            // 'start_time'    => $start_time,
+            // 'burst_time'    => $burst_time,
+            // 'finish_time'   => $finish_time,
         ];
 
         Session::put('cart', $data);
@@ -87,10 +97,14 @@ class DetailsController extends Controller
     public function cart(){
         $cart = Session::get('cart');
         $waktu_tiba = now();
+        $start_time = now();
+        $burst_time = now();
+        $finish_time = now();
         // $waktu_tunggu = $waktu_menu();
         
         return view('guest.transaksi', [
             'cart' => $cart,
+            'waktu_tiba' =>$waktu_tiba,
         ]);
     }
 

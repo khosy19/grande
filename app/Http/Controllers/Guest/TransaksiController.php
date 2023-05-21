@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Models\Antrian;
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\Detail_transaksi;
@@ -46,9 +47,18 @@ class TransaksiController extends Controller
                 'id_transaksi' => $id_transaksi,
                 'id_items'     => $id_items,
                 'jumlah'       => $jumlah,
-                'waktu_tiba'  => now(),
-
             ]);
+
+            // Antrian::create([
+            //     'id_antrian'            =>  $id_antrian,
+            //     'id_detail_transaksi'   => $id_detail_transaksi,
+            //     'id_station'            => $id_station,
+            //     'id_users'              => $id_users,
+            //     'waktu_tiba'            => now(),
+            //     'start_time'            => now(),
+            //     'burst_time'            => now(),
+            //     'finish_time'           => now(),
+            // ])
         }
        
         //1 cash 2 cc

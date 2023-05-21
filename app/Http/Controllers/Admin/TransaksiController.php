@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Detail_transaksi;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Antrian;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -19,6 +20,12 @@ class TransaksiController extends Controller
                         ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
                         ->where('status', 2)    
                         ->get();
+            // $data = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi', '=', 'antrian.id_antrian')
+            //             ->leftjoin('transaksi', 'transaksi.id_transaksi', '=', 'antrian.id_antrian')
+            //             ->leftjoin('users', 'users.id', '=', 'antrian.id_antrian')
+            //             ->select('antrian*', 'transaksi.*', 'users.room')
+            //             ->where('transaksi.status', 2)
+            //             ->get();
         }elseif ($status =='waiting') {
             $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
                         ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')

@@ -35,7 +35,7 @@ class HistoryController extends Controller
         ->leftjoin('station', 'station.id_station', '=', 'antrian.id_station')
         ->leftjoin('users', 'users.id', '=', 'antrian.id_antrian')
         ->leftjoin('items', 'items.id_items', '=', 'detail_transaksi.id_items')
-        ->select('antrian.*', 'items.nama_makanan', 'items.waktu_menu')
+        ->select('antrian.*', 'items.nama_makanan', 'items.waktu_menu', 'detail_transaksi.jumlah')
         ->where('detail_transaksi.id_transaksi', '=', $id)
         ->first();
 
