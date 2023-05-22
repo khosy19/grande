@@ -83,9 +83,12 @@ Route::middleware('auth', 'validatelevels:guest')->group(function () {
 
 // produksi
 Route::middleware('auth', 'validatelevels:produksi')->group(function () {
-    Route::get('/produksi', function () {
-        return 'ini produksi';
-    });
+    Route::get('/produksi/dashboard', [Produksi\DashboardController::class, 'index'])->name('dashboard_produksi');
+    Route::get('/produksi/transaksi', [Produksi\TransaksiController::class, 'index'])->name('transaksi_produksi');
+    Route::view('/produksi/transaksi/add', 'produksi.transaksi_add')->name('add_transaksi_produksi');
+    Route::get('/produksi/transaksi/detail/{id}', [Produksi\TransaksiController::class, 'detail'])->name('transaksi_detail_produksi');
+    Route::put('/produksi/transaksi/update/{id}', [Produksi\TransaksiController::class, 'update'])->name('transaksi_update_produksi');
+
 });
 
 // kasir

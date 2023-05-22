@@ -21,7 +21,7 @@
             <div class="toolbar">
                 <!--        Here you can write extra buttons/actions for the toolbar              -->
                 {{-- filter kategori --}}
-                <form action="{{ route('transaksi') }}" class="action" method="GET">
+                <form action="{{ route('transaksi_produksi') }}" class="action" method="GET">
                 <div class="form-group">
                     {{-- <a href="{{ route('add_transaksi') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Transaction</a> --}}
                     <label for="status">Status Pesanan</label>

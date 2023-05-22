@@ -44,7 +44,7 @@ class TransaksiController extends Controller
         
         $unik = $data->unique('id_transaksi');
         // return $unik;
-        return view('admin.transaksi',[
+        return view('produksi.transaksi',[
             'data' => $unik,
             // 'data2' => $data2,
             // 'status' => $status,
@@ -60,7 +60,7 @@ class TransaksiController extends Controller
         $detail2 = Detail_transaksi::all();
         
                   
-        return view('admin.transaksi_detail', [
+        return view('produksi.transaksi_detail', [
             'detail' => $detail,
         ]);
     }
@@ -75,6 +75,6 @@ class TransaksiController extends Controller
         $data->save();
         // Alert::success('Success Title', 'Success Message');
         $request->session()->flash('info', 'Status Transaksi Berhasil Diubah');
-        return redirect('/admin/management/transaksi');
+        return redirect('/produksi/transaksi');
     }
 }

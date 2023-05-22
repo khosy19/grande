@@ -84,6 +84,24 @@
                 </a>
             </li>
             @endif
+            @if(Auth::user()->level == 'produksi')
+            <li
+                class="{{ (request()->is(Auth::user()->level.'/transaksi')) ? 'active' : '' }}">
+                <a href="{{ url(Auth::user()->level.'/transaksi') }}">
+                    <i class="material-icons">manage_search</i>
+                    <p>Transaksi</p>
+                </a>
+            </li>
+            @endif
+            @if(Auth::user()->level == 'kasir')
+            <li
+                class="{{ (request()->is(Auth::user()->level.'/transaksi')) ? 'active' : '' }}">
+                <a href="{{ url(Auth::user()->level.'/transaksi') }}">
+                    <i class="material-icons">manage_search</i>
+                    <p>Transaksi</p>
+                </a>
+            </li>
+            @endif
             <li>
                 <a href="{{ route('logout') }}" class="btn btn-danger">logout</a>
             </li>
