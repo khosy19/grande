@@ -15,32 +15,11 @@ class TransaksiController extends Controller
 {
     public function index(Request $request){
         $status = $request->input('status');
-        if ($status == 'unpayment') {
-            $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
-                        ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
-                        ->where('status', 2)    
-                        ->get();
-            // $data = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi', '=', 'antrian.id_antrian')
-            //             ->leftjoin('transaksi', 'transaksi.id_transaksi', '=', 'antrian.id_antrian')
-            //             ->leftjoin('users', 'users.id', '=', 'antrian.id_antrian')
-            //             ->select('antrian*', 'transaksi.*', 'users.room')
-            //             ->where('transaksi.status', 2)
-            //             ->get();
-        }elseif ($status =='waiting') {
+        $status == 'waiting';
             $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
                         ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
                         ->where('status', 0)    
                         ->get();
-        }elseif($status == 'success'){
-            $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
-                        ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
-                        ->where('status', 1)    
-                        ->get();
-        }else{
-            $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
-            ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
-            ->get(); 
-        }
         
         $unik = $data->unique('id_transaksi');
         // return $unik;

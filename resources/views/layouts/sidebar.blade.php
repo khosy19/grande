@@ -86,7 +86,7 @@
             @endif
             @if(Auth::user()->level == 'produksi')
             <li
-                class="{{ (request()->is(Auth::user()->level.'/transaksi')) ? 'active' : '' }}">
+                class="{{ (request()->is(Auth::user()->level.'/transaksi*')) ? 'active' : '' }}">
                 <a href="{{ url(Auth::user()->level.'/transaksi') }}">
                     <i class="material-icons">manage_search</i>
                     <p>Transaksi</p>
@@ -95,7 +95,7 @@
             @endif
             @if(Auth::user()->level == 'kasir')
             <li
-                class="{{ (request()->is(Auth::user()->level.'/transaksi')) ? 'active' : '' }}">
+                class="{{ (request()->is(Auth::user()->level.'/transaksi*')) ? 'active' : '' }}">
                 <a href="{{ url(Auth::user()->level.'/transaksi') }}">
                     <i class="material-icons">manage_search</i>
                     <p>Transaksi</p>
