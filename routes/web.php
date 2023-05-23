@@ -85,7 +85,7 @@ Route::middleware('auth', 'validatelevels:guest')->group(function () {
 Route::middleware('auth', 'validatelevels:produksi')->group(function () {
     Route::get('/produksi/dashboard', [Produksi\DashboardController::class, 'index'])->name('dashboard_produksi');
     Route::get('/produksi/transaksi', [Produksi\TransaksiController::class, 'index'])->name('transaksi_produksi');
-    Route::view('/produksi/transaksi/add', 'produksi.transaksi_add')->name('add_transaksi_produksi');
+    // Route::view('/produksi/transaksi/add', 'produksi.transaksi_add')->name('add_transaksi_produksi');
     Route::get('/produksi/transaksi/detail/{id}', [Produksi\TransaksiController::class, 'detail'])->name('transaksi_detail_produksi');
     Route::put('/produksi/transaksi/update/{id}', [Produksi\TransaksiController::class, 'update'])->name('transaksi_update_produksi');
 
@@ -93,7 +93,10 @@ Route::middleware('auth', 'validatelevels:produksi')->group(function () {
 
 // kasir
 Route::middleware('auth', 'validatelevels:kasir')->group(function () {
-    Route::get('/produksi', function () {
-        return 'ini kasir';
-    });
+    Route::get('/kasir/dashboard', [Kasir\DashboardController::class, 'index'])->name('dashboard_kasir');
+    Route::get('/kasir/transaksi', [Kasir\TransaksiController::class, 'index'])->name('transaksi_kasir');
+    Route::get('/kasir/transaksi/detail/{id}', [Kasir\TransaksiController::class, 'detail'])->name('transaksi_detail_kasir');
+    Route::get('/kasir/transaksi/cetak', [Kasir\TransaksiController::class, 'cetak_struk'])->name('cetak_struk');
+    Route::view('/kasir/transaksi/add', 'kasir.transaksi_add')->name('add_transaksi_kasir');
+    Route::put('/kasir/transaksi/update/{id}', [Kasir\TransaksiController::class, 'update'])->name('transaksi_update_kasir');
 });

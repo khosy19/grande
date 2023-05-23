@@ -10,8 +10,12 @@
                 <i class="material-icons">request_quote</i>
             </div>
             <div class="card-content">
-                <p class="category">Total Income</p>
-                <h5 class="card-title">Rp {{number_format($total,2,',','.')}}</h5>
+                <p class="category">Antrian Belum Eksekusi</p>
+                <h3 class="card-title"> <br>
+                    <center>
+                        {{$status}}
+                    </center>
+                </h3>
             </div>
             <div class="card-footer">
 
@@ -24,8 +28,12 @@
                 <i class="material-icons">weekend</i>
             </div>
             <div class="card-content">
-                <p class="category">Tables</p>
-                <h3 class="card-title">{{$room}}</h3>
+                <p class="category">Antrian Sudah Selesai</p>
+                <h3 class="card-title"> <br>
+                    <center>
+                        {{$status2}}
+                    </center>
+                </h3>
             </div>
             <div class="card-footer">
 
@@ -38,8 +46,12 @@
                 <i class="material-icons">receipt_long</i>
             </div>
             <div class="card-content">
-                <p class="category">Orders</p>
-                <h3 class="card-title">{{$trans}}</h3>
+                <p class="category">Total Transaksi Hari ini</p>
+                <h3 class="card-title"> <br>
+                    <center>
+                        {{$trans}}
+                    </center>
+                </h3>
             </div>
             <div class="card-footer">
 

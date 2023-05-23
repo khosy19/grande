@@ -16,19 +16,18 @@
             <i class="material-icons">assignment</i>
         </div>
         <div class="card-content">
-            <h4 class="card-title">List
+            <h4 class="card-title">List Transaksi
             </h4>
             <div class="toolbar">
                 <!--        Here you can write extra buttons/actions for the toolbar              -->
                 {{-- filter kategori --}}
-                <form action="{{ route('transaksi') }}" class="action" method="GET">
+                <form action="{{ route('transaksi_kasir') }}" class="action" method="GET">
                 <div class="form-group">
                     {{-- <a href="{{ route('add_transaksi') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Transaction</a> --}}
                     <label for="status">Status Pesanan</label>
                     <select name="status" class="form-control" required>
                         {{-- <option value="all">All</option> --}}
-                        <option value="all">All</option>
-                        <option value="unpayment" {{ Request::get('status') == 'unpayment' ? 'selected' : '' }}>Unpayment</option>
+                        <option value="unpayment">Belum Bayar</option>
                         <option value="waiting" {{ Request::get('status') == 'waiting' ? 'selected' : '' }}>Waiting</option>
                         <option value="success" {{ Request::get('status') == 'success' ? 'selected' : '' }}>Finish</option>
                         {{-- <option value="waiting">Waiting</option>
@@ -80,30 +79,36 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{ route('transaksi_detail', $data->id_transaksi) }}"
+                                    <a href="{{ route('transaksi_detail_kasir', $data->id_transaksi) }}"
                                         class="edit">
                                         <i class="material-icons" style="font-size: 40px; color: rgb(86, 190, 86);">receipt_long</i>
                                     </a>
                                 </td>
                                 <td class="text-center">
                                     @if ($data->status == 2)
-                                        <form action="{{ route('transaksi_update', $data->id_transaksi) }}" method="POST">
+                                        <form action="{{ route('transaksi_update_kasir', $data->id_transaksi) }}" method="POST">
                                             @csrf
                                             {{ method_field('PUT') }}
                                             <input type="hidden" name="finish" value="0">
-                                            <button type="submit" class="btn btn-rose btn-round remove">Unpayment</button>
+                                            <button type="submit" class="btn btn-rose btn-round remove">Bayar</button>
                                         </form>
                                     @elseif ($data->status == 0)
-                                        <form action="{{ route('transaksi_update', $data->id_transaksi) }}" method="POST">
+                                        <form action="{{ route('transaksi_update_kasir', $data->id_transaksi) }}" method="POST">
                                             @csrf
                                             {{ method_field('PUT') }}
                                             <input type="hidden" name="finish" value="1">
-                                            <button type="submit" class="btn btn-rose btn-round remove">Finish</button>
+                                            <button type="submit" class="btn btn-rose btn-round remove" disabled>Proses</button>
                                         </form>
                                     @else
                                     <i class="material-icons" style="font-size: 40px; color: rgb(182, 21, 21);">remove</i>
                                     @endif
+                                    
+                                    <p>
+                                        <a href="{{ route('cetak_struk') }}" class="btn btn-rose btn-round" target="_blank" >CETAK</a>
+                                    </p>
                                 </td>
+                                {{-- <td class="text-center">
+                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>

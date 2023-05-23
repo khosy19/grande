@@ -10,14 +10,15 @@ use App\Models\User;
 class DashboardController extends Controller
 {
     public function index(){
-        $trans = Transaksi::all()->count();
-        $room = User::wherelevel('guest')->get()->count();
-        $pendapatan = Transaksi::sum('total');
+        // $trans = Transaksi::all()->count();
+        $antrian_belum = Transaksi::where('status', 0)->count();
+        $antrian_sudah = Transaksi::where('status', 1)->count();
+        $trans = $antrian_belum +$antrian_sudah;
 
-        return view('admin.dashboard',[
+        return view('produksi.dashboard',[
             'trans' => $trans,
-            'room'  => $room,
-            'total' => $pendapatan,
+            'status'=> $antrian_belum,
+            'status2'=> $antrian_sudah,
         ]);
     }
 }

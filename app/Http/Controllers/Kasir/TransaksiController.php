@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Kasir;
 
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -8,6 +8,7 @@ use App\Models\Detail_transaksi;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Antrian;
+use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -15,18 +16,7 @@ class TransaksiController extends Controller
 {
     public function index(Request $request){
         $status = $request->input('status');
-        if ($status == 'unpayment') {
-            $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
-                        ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
-                        ->where('status', 2)    
-                        ->get();
-            // $data = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi', '=', 'antrian.id_antrian')
-            //             ->leftjoin('transaksi', 'transaksi.id_transaksi', '=', 'antrian.id_antrian')
-            //             ->leftjoin('users', 'users.id', '=', 'antrian.id_antrian')
-            //             ->select('antrian*', 'transaksi.*', 'users.room')
-            //             ->where('transaksi.status', 2)
-            //             ->get();
-        }elseif ($status =='waiting') {
+        if ($status =='waiting') {
             $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
                         ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
                         ->where('status', 0)    
@@ -39,12 +29,13 @@ class TransaksiController extends Controller
         }else{
             $data = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
             ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')
+            ->where('status', 2)
             ->get(); 
         }
         
         $unik = $data->unique('id_transaksi');
         // return $unik;
-        return view('admin.transaksi',[
+        return view('kasir.transaksi',[
             'data' => $unik,
             // 'data2' => $data2,
             // 'status' => $status,
@@ -60,7 +51,7 @@ class TransaksiController extends Controller
         $detail2 = Detail_transaksi::all();
         
                   
-        return view('admin.transaksi_detail', [
+        return view('kasir.transaksi_detail', [
             'detail' => $detail,
         ]);
     }
@@ -75,6 +66,35 @@ class TransaksiController extends Controller
         $data->save();
         // Alert::success('Success Title', 'Success Message');
         $request->session()->flash('info', 'Status Transaksi Berhasil Diubah');
-        return redirect('/admin/management/transaksi');
+        return redirect('/kasir/transaksi');
+    }
+    public function cetak_struk(Request $request){
+        $cetak_struk = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi' , '=', 'antrian.id_detail_transaksi')
+        ->leftjoin('station', 'station.id_station', '=', 'antrian.id_station')
+        ->leftjoin('users', 'users.id', '=', 'antrian.id_antrian')
+        ->leftjoin('items', 'items.id_items', '=', 'detail_transaksi.id_items')
+        ->leftjoin('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.id_transaksi')
+        ->select('antrian.finish_time', 'items.nama_makanan', 'items.harga', 'detail_transaksi.jumlah', 'transaksi.total', 'transaksi.invoice', 'users.*')
+        // ->where('detail_transaksi.id_transaksi', '=', $id)
+        ->first();
+
+        $datetime_finish_time = $cetak_struk->finish_time;
+
+        $datetime_array_finish_time = explode(" ", $datetime_finish_time);
+
+        // Ambil nilai jam, menit, dan detik dari bagian waktu
+
+        $time_array_finish_time = explode(":", $datetime_array_finish_time[1]);
+
+        // $data2 = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
+        //                 ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')  
+        //                 ->get();
+        //                 $unik = $data2->unique('id_transaksi');
+
+        return view('kasir.cetak_struk', [
+            'cetak_struk' => $cetak_struk,
+            'fin' => $time_array_finish_time,
+            // 'data' => $unik,
+        ]);
     }
 }

@@ -27,7 +27,7 @@
                 </div>
         </div>
     </div>
-    <a href="{{ route('transaksi') }}" class="btn btn-danger btn-round">
+    <a href="{{ route('transaksi_kasir') }}" class="btn btn-danger btn-round">
         <i class="material-icons">arrow_back</i> Back
     </a>
     @endsection
