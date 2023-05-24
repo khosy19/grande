@@ -31,12 +31,11 @@
         <p>Harga: {{ $cetak_struk->harga }}</p>
         <p>Jumlah: {{ $cetak_struk->jumlah }}</p>
         <p>Total Tagihan: {{ $cetak_struk->total }}</p>
-        <p>Waktu Selesai: {{ $cetak_struk->finish_time }}</p>
-        <p>================================</p>
-        <p>Waktu Terbayar: {{ $cetak_struk->finish_time }}</p>
+        <p>Selesai: {{ $cetak_struk->finish_time }}</p>
+
     
-        {{-- <p>Deskripsi: {{ $data->name }}</p>
-        <p>Nomor Meja: {{ $data->room }}</p> --}}
+        <p>Deskripsi: {{ $cetak_struk->name }}</p>
+        <p>Nomor Meja: {{ $cetak_struk->room }}</p>
     </div>
 
     <!-- Tombol cetak -->

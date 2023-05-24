@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Guest;
 
-use App\Http\Controllers\Controller;
-use App\Models\Antrian;
-use Illuminate\Http\Request;
-use App\Models\Transaksi;
-use App\Models\Detail_transaksi;
-use Session;
 use Auth;
+use Session;
+use App\Models\Antrian;
+use App\Models\Station;
+use App\Models\Transaksi;
+use Illuminate\Http\Request;
+use App\Models\Detail_transaksi;
+use App\Http\Controllers\Controller;
 
 class TransaksiController extends Controller
 {
@@ -40,6 +41,7 @@ class TransaksiController extends Controller
             $waktu_items = $val['waktu_items'];
 
             $burst = $waktu_items*$jumlah;
+            
 
             Detail_transaksi::create([
                 'id_transaksi' => $id_transaksi,
@@ -48,22 +50,70 @@ class TransaksiController extends Controller
             ]);
             
         }
-
+        // $waktu = 
         $jam = date('H');
         $menit = explode(':', date('H:i:m'));
         $menits = $menit[1];
         $detik = date('s');
 
         $burst_final = $menits+$burst;
+        $burst_final_makanan = $menits+$burst;
+        $burst_final_minuman = $menits+$burst;
+        $waktu_tiba = explode(':', date('H:i:m'));
+        $waktu_start = 0 + $burst_final;
+        $waiting_time = $waktu_start-$waktu_tiba[1];
 
+        $menit = explode(':', date('H:i:m'));
+        $waktu_tiba = $menits + 0;
+        $start_time = $menits + 0;
+        $burst_time = $waktu_items*$jumlah;
+        $start_time2 = $start_time + $burst_time; 
+        $finish_time = $burst_time + $start_time2;
+        $turn_around_time = $finish_time - $waktu_tiba;  
+        // $waktu_tiba = 0;
+        // $start_time = 
+
+
+        // $tipe = $request->input('tipe');
+        // if($tipe == 1){
+        //     Antrian::create([
+        //         'id_detail_transaksi' =>  $id_transaksi,
+        //         'id_station' => 1,
+        //         'id_users' => $id_user,
+        //         'waktu_tiba' => date('H:i:s'),
+        //         'start_time' => date('H:i:s'),
+        //         'burst_time' => $jam.':'.$burst_final_makanan.':'.$detik,
+        //         // 'waiting_time' => $jam.':'.$burst_final_makanan.':'.$detik,
+        //         // 'tat' => $jam.':'.$burst_final.':'.$detik,
+        //     ]);
+        // }elseif($tipe == 2){
+        //     Antrian::create([
+        //         'id_detail_transaksi' =>  $id_transaksi,
+        //         'id_station' => 2,
+        //         'id_users' => $id_user,
+        //         'waktu_tiba' => date('H:i:s'),
+        //         'start_time' => date('H:i:s'),
+        //         'burst_time' => $jam.':'.$burst_final_minuman.':'.$detik,
+        //         // 'tat' => $jam.':'.$burst_final.':'.$detik,
+        //         // 'waiting_time' => $jam.':'.$burst_final.':'.$detik,
+        //     ]);
+        // }
+        // $data = $tipe->unique('tipe', 1);
+        $id_station = Station::orderby('id_station', 'desc')->first()->id_station;
+        
         Antrian::create([
+            // 'id_detail_transaksi' =>  $id_transaksi,
             'id_detail_transaksi' =>  $id_transaksi,
-            'id_station' => 1,
-            'id_users' => $id_user,
-            'waktu_tiba' => date('H:i:s'),
-            'start_time' => date('H:i:s'),
-            'burst_time' => $jam.':'.$burst_final.':'.$detik,
+            'id_station'          => $id_station,
+            'id_users'            => $id_user,
+            'waktu_tiba'          => $jam.':'.$waktu_tiba.':'.$detik,
+            'start_time'          => $start_time2,
+            'burst_time'          => $burst_final,
+            'waiting_time'        => $waiting_time,
+            'finish_time'         => $jam.':'.$finish_time,
+            'tat'                 => $turn_around_time,
         ]);
+        // 'start_time' => date('H:i:s'),
 
         //1 cash 2 cc
         if ($request->method != 1) {

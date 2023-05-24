@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeds::class);
         $this->call(ItemsSeeds::class);
         $this->call(StationSeeds::class);
-        $this->call(TransaksiSeeds::class);
-        $this->call(DetailTransaksiSeeds::class);
-        $this->call(AntrianSeeds::class);
+        // $this->call(TransaksiSeeds::class);
+        // $this->call(DetailTransaksiSeeds::class);
+        // $this->call(AntrianSeeds::class);
     }
 }

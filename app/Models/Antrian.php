@@ -18,6 +18,8 @@ class Antrian extends Model
         'start_time',
         'burst_time',
         'finish_time',
+        'waiting_time',
+        'tat',
         // 'tat',
     ];
 }

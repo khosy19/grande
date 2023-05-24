@@ -78,13 +78,13 @@ class TransaksiController extends Controller
         // ->where('detail_transaksi.id_transaksi', '=', $id)
         ->first();
 
-        $datetime_finish_time = $cetak_struk->finish_time;
+        // $datetime_finish_time = $cetak_struk->finish_time;
 
-        $datetime_array_finish_time = explode(" ", $datetime_finish_time);
+        // $datetime_array_finish_time = explode(" ", $datetime_finish_time);
 
         // Ambil nilai jam, menit, dan detik dari bagian waktu
 
-        $time_array_finish_time = explode(":", $datetime_array_finish_time[1]);
+        // $time_array_finish_time = explode(":", $datetime_array_finish_time[1]);
 
         // $data2 = Transaksi::join('users', 'users.id', '=', 'transaksi.id_users')
         //                 ->join('detail_transaksi', 'detail_transaksi.id_transaksi', '=', 'transaksi.id_transaksi')  
@@ -93,7 +93,7 @@ class TransaksiController extends Controller
 
         return view('kasir.cetak_struk', [
             'cetak_struk' => $cetak_struk,
-            'fin' => $time_array_finish_time,
+            // 'finish_time' => $time_array_finish_time,
             // 'data' => $unik,
         ]);
     }

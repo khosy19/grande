@@ -25,7 +25,7 @@
                                 <th>Items</th>
                                 <th>Price</th>
                                 <th>Qty</th>
-                                <th>Waktu Tiba</th>
+                                {{-- <th>Waktu Tiba</th> --}}
                                 <th>Action</th>
                                 <th></th>
                             </thead>

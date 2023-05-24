@@ -126,7 +126,7 @@
             const url = $(this).attr('href');
             swal({
                 title: 'Konfirmasi Pesanan',
-                text: 'Apakah anda yakin menu sudah siap diantar?',
+                text: 'Apakah anda yakin mengubah status transaksi?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
@@ -137,7 +137,7 @@
             }).then(function (value) {
                 swal({
                     title: 'Status Pesanan Diubah!',
-                    text: 'Segera antarkan pesanan pelanggan sesuai nomor meja!.',
+                    text: 'Perubahan Status Pelanggan Berhasil!, Pesanan akan segera diproses oleh pihak produksi.',
                     type: 'success',
                     confirmButtonClass: "btn btn-success",
                     buttonsStyling: false
