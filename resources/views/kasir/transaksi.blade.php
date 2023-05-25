@@ -3,7 +3,7 @@
 @section('title', 'Transaction List')
 
 @section('content')
-@include('sweetalert::alert')
+{{-- @include('sweetalert::alert') --}}
 
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
       @if(Session::has($msg))

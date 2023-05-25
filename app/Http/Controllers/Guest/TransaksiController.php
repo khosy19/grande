@@ -68,8 +68,26 @@ class TransaksiController extends Controller
         $start_time = $menits + 0;
         $burst_time = $waktu_items*$jumlah;
         $start_time2 = $start_time + $burst_time; 
-        $finish_time = $burst_time + $start_time2;
-        $turn_around_time = $finish_time - $waktu_tiba;  
+        $finish_menit = $burst_time + $start_time2;
+
+        $waktu_selesai = 0;
+        $sisa_waktu_pertama = 0;
+        $sisa_waktu_kedua = 0;
+        $sisa_waktu = 0;
+        if ($finish_menit > 60) {
+            $sisa_waktu_pertama = $finish_menit - 60;
+            $sisa_waktu = $sisa_waktu_pertama;
+            $waktu_selesai = $jam + 1;
+            if ($sisa_waktu > 60) {
+                $sisa_waktu_kedua = $sisa_waktu_pertama - 60;
+                $sisa_waktu = $sisa_waktu_kedua;
+                $waktu_selesai = $jam + 2;
+            }
+        }else{
+            $waktu_selesai = $jam;
+        }
+    
+        $turn_around_time = $finish_menit - $waktu_tiba;  
         // $waktu_tiba = 0;
         // $start_time = 
 
@@ -110,7 +128,7 @@ class TransaksiController extends Controller
             'start_time'          => $start_time2,
             'burst_time'          => $burst_final,
             'waiting_time'        => $waiting_time,
-            'finish_time'         => $jam.':'.$finish_time,
+            'finish_time'         => $waktu_selesai.':'.$sisa_waktu,
             'tat'                 => $turn_around_time,
         ]);
         // 'start_time' => date('H:i:s'),

@@ -38,6 +38,9 @@ class HistoryController extends Controller
         ->select('antrian.*', 'items.nama_makanan', 'items.waktu_menu', 'detail_transaksi.jumlah')
         ->where('detail_transaksi.id_transaksi', '=', $id)
         ->get();
+
+        return $antrian_detail;
+        die();
         // ->get();
 
         // return $antrian_detail;
