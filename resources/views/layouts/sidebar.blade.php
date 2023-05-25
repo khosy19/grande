@@ -74,6 +74,13 @@
                     <p>Transaksi</p>
                 </a>
             </li>
+            <li
+                class="{{ (request()->is(Auth::user()->level.'/management/fcfs*')) ? 'active' : '' }}">
+                <a href="{{ url(Auth::user()->level.'/management/fcfs') }}">
+                    <i class="material-icons">receipt_long</i>
+                    <p>Antrian FCFS</p>
+                </a>
+            </li>
             @endif
             @if(Auth::user()->level == 'guest')
             <li

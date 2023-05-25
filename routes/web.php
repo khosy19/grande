@@ -51,6 +51,8 @@ Route::middleware('auth', 'validatelevels:admin')->group(function () {
     Route::view('/admin/management/transaksi/add', 'admin.transaksi_add')->name('add_transaksi');
     Route::get('/admin/management/transaksi/detail/{id}', [Admin\TransaksiController::class, 'detail'])->name('transaksi_detail');
     
+    Route::get('/admin/management/fcfs', [Admin\AntrianController::class, 'index'])->name('fcfs');
+
     Route::post('/admin/management/user/store', [Admin\UsersController::class, 'store'])->name('store_users');
     Route::post('/admin/management/room/store', [Admin\RoomController::class, 'store'])->name('store_rooms');
     Route::post('/admin/management/food/store', [Admin\FoodController::class, 'store'])->name('store_foods');

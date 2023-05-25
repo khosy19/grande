@@ -3,7 +3,7 @@
 @section('title', 'Transaction List')
 
 @section('content')
-@include('sweetalert::alert')
+{{-- @include('sweetalert::alert') --}}
 
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
       @if(Session::has($msg))
@@ -52,7 +52,7 @@
                                             @csrf
                                             {{ method_field('PUT') }}
                                             <input type="hidden" name="finish" value="1">
-                                            <button type="submit" class="btn btn-rose btn-round remove">Finish</button>
+                                            <button type="submit" class="btn btn-rose btn-round remove" onclick="notifProduksi()">Finish</button>
                                         </form>
                                     @else
                                     <i class="material-icons" style="font-size: 40px; color: rgb(182, 21, 21);">remove</i>
@@ -68,11 +68,44 @@
     </div>
     <!--  end card  -->
 </div>
-@push('script')
+<script>
+    function notifProduksi() {
+        var formcbckuser = event.target.form;
+        // event.preventDefault(); // prevent form submit
+        // var formcbckuser = event.target.form; // storing the form
+        // console.log(formcbckuser);
+        swal({
+                title: "Are you sure to deactive this user?",
+                text: "You can turn it back active later",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, deactive it!",
+                cancelButtonText: "No, cancel it!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+            function(isConfirm) {
+                if (isConfirm) {
+                    console.log(formcbckuser);
+                    formcbckuser.submit();
+                    swal("Success",
+                        "Your data already updated :)",
+                        "success");
+                } else {
+                    swal("Cancelled",
+                        "You cancelled :)",
+                        "error");
+                }
+            });
+}
+</script>
+{{-- @push('script')
     <script>
         $('.remove').on('click', function (event) {
             event.preventDefault();
-            const url = $(this).attr('href');
+            const url = 'http://127.0.0.1:8000/produksi/transaksi';
+            // console.log(url);
             swal({
                 title: 'Konfirmasi Pesanan',
                 text: 'Apakah anda yakin menu sudah siap diantar?',
@@ -111,5 +144,5 @@
         });
 
     </script>
-@endpush
+@endpush --}}
 @endsection

@@ -48,12 +48,13 @@ class TransaksiController extends Controller
         $this->validate($request, [
             'finish'  => 'numeric|max:1',
         ]);
-
         $data = Transaksi::find($id);
         $data->status    = $request->finish;
         $data->save();
-        // Alert::success('Success Title', 'Success Message');
         $request->session()->flash('info', 'Status Transaksi Berhasil Diubah');
-        return redirect('/produksi/transaksi');
+        return redirect()->route('transaksi_produksi');
+        // Alert::success('Success Title', 'Success Message');
+        // return redirect('/produksi/transaksi');
+        // return view('produksi.tran')
     }
 }
