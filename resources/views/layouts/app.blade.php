@@ -116,6 +116,7 @@
     @endif
 </body>
 <!--   Core JS Files   -->
+<script src="{{ asset('home/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ url('/assets/js/jquery-3.1.1.min.js') }}" type="text/javascript"></script>
 <script src="{{ url('/assets/js/jquery-ui.min.js') }}" type="text/javascript"></script>
 <script src="{{ url('/assets/js/bootstrap.min.js') }}" type="text/javascript"></script>

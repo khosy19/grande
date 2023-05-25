@@ -65,8 +65,8 @@ class TransaksiController extends Controller
         $data->status    = $request->finish;
         $data->save();
         // Alert::success('Success Title', 'Success Message');
-        $request->session()->flash('info', 'Status Transaksi Berhasil Diubah');
-        return redirect('/kasir/transaksi');
+        // $request->session()->flash('info', 'Status Transaksi Berhasil Diubah');
+        return redirect()->route('transaksi_kasir')->with('toast_success', 'Data Berhasil Divalidasi');
     }
     public function cetak_struk(Request $request){
         $cetak_struk = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi' , '=', 'antrian.id_detail_transaksi')

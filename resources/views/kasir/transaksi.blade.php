@@ -3,6 +3,7 @@
 @section('title', 'Transaction List')
 
 @section('content')
+<<<<<<< HEAD
 {{-- @include('sweetalert::alert') --}}
 
     @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -10,6 +11,13 @@
       <p class="alert alert-{{ $msg }}">{{ Session::get($msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
       @endif
     @endforeach
+=======
+@if (session('success_message'))
+<div class="alert alert-success">
+    {{ session('success_message') }}
+</div>
+@endif
+>>>>>>> 322866fb92c32dd848e68eca8468b4ff96e712dc
 <div class="col-md-12">
     <div class="card">
         <div class="card-header card-header-icon" data-background-color="purple">
@@ -119,107 +127,10 @@
     </div>
     <!--  end card  -->
 </div>
-@push('script')
-    <script>
-        $('.remove').on('click', function (event) {
-            event.preventDefault();
-            const url = $(this).attr('href');
-            swal({
-                title: 'Konfirmasi Pesanan',
-                text: 'Apakah anda yakin mengubah status transaksi?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'No',
-                confirmButtonClass: "btn btn-success",
-                cancelButtonClass: "btn btn-danger",
-                buttonsStyling: false
-            }).then(function (value) {
-                swal({
-                    title: 'Status Pesanan Diubah!',
-                    text: 'Perubahan Status Pelanggan Berhasil!, Pesanan akan segera diproses oleh pihak produksi.',
-                    type: 'success',
-                    confirmButtonClass: "btn btn-success",
-                    buttonsStyling: false
-                })
-                setTimeout(function() {
-                if (value) {
-                    window.location.href = url;}
-                }, 2000);
-
-            }, function (dismiss) {
-                // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-                if (dismiss === 'cancel') {
-                    swal({
-                        title: 'Dicancel',
-                        text: 'Status Pesanan Belum diganti',
-                        type: 'error',
-                        confirmButtonClass: "btn btn-info",
-                        buttonsStyling: false
-                    })
-                }
-            })
-        });
-
-        // npm sweet cc
-    //     $('.cc-input').on('click', function (event) {
-    //     Swal.fire({
-    //     title: 'Masukkan Kode Referensi Kartu Kredit',
-    //     input: 'text',
-    //     inputAttributes: {
-    //         autocapitalize: 'off'
-    //     },
-    //     showCancelButton: true,
-    //     confirmButtonText: 'Look up',
-    //     showLoaderOnConfirm: true,
-    //     preConfirm: (login) => {
-    //         return fetch(`//api.github.com/users/${login}`)
-    //         .then(response => {
-    //             if (!response.ok) {
-    //             throw new Error(response.statusText)
-    //             }
-    //             return response.json()
-    //         })
-    //         .catch(error => {
-    //             Swal.showValidationMessage(
-    //             `Request failed: ${error}`
-    //             )
-    //         })
-    //     },
-    //     allowOutsideClick: () => !Swal.isLoading()
-    //     }).then((result) => {
-    //     if (result.isConfirmed) {
-    //         Swal.fire({
-    //         title: `${result.value.login}'s avatar`,
-    //         imageUrl: result.value.avatar_url
-    //         })
-    //     }
-    //     })
-    // });
-
-
-    //     $('.cc-ref').on('click', function (event) {
-    //     Swal.fire({
-    //     title: 'Masukkan Kode Referensi Kartu Kredit',
-    //     html:
-    //         '<input id="swal-input1" class="swal2-input" placeholder="***">' +
-    //         '<input id="swal-input2" class="swal2-input" placeholder="Input 2">',
-    //     focusConfirm: false,
-    //     preConfirm: () => {
-    //         return [
-    //         document.getElementById('swal-input1').value,
-    //         document.getElementById('swal-input2').value
-    //         ]
-    //     }
-    //     }).then((result) => {
-    //     if (result.isConfirmed) {
-    //         const [input1] = result.value;
-    //         const [input1, input2] = result.value;
-    //         Lakukan sesuatu dengan nilai input1 dan input2
-    //     }
-    //     })
-    // });
-
-    </script>
-@endpush
+@include('sweetalert::alert')
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
 @endsection

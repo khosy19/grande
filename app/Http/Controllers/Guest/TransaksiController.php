@@ -70,6 +70,10 @@ class TransaksiController extends Controller
         $start_time2 = $start_time + $burst_time; 
         $finish_menit = $burst_time + $start_time2;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 322866fb92c32dd848e68eca8468b4ff96e712dc
         $waktu_selesai = 0;
         $sisa_waktu_pertama = 0;
         $sisa_waktu_kedua = 0;
@@ -86,8 +90,14 @@ class TransaksiController extends Controller
         }else{
             $waktu_selesai = $jam;
         }
+<<<<<<< HEAD
     
         $turn_around_time = $finish_menit - $waktu_tiba;  
+=======
+        
+        $turn_around_time = $finish_menit - $waktu_tiba;  
+
+>>>>>>> 322866fb92c32dd848e68eca8468b4ff96e712dc
         // $waktu_tiba = 0;
         // $start_time = 
 
