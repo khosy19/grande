@@ -3,21 +3,12 @@
 @section('title', 'Transaction List')
 
 @section('content')
-<<<<<<< HEAD
-{{-- @include('sweetalert::alert') --}}
 
-    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-      @if(Session::has($msg))
-      <p class="alert alert-{{ $msg }}">{{ Session::get($msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-      @endif
-    @endforeach
-=======
 @if (session('success_message'))
 <div class="alert alert-success">
     {{ session('success_message') }}
 </div>
 @endif
->>>>>>> 322866fb92c32dd848e68eca8468b4ff96e712dc
 <div class="col-md-12">
     <div class="card">
         <div class="card-header card-header-icon" data-background-color="purple">

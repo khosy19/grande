@@ -39,8 +39,8 @@ class HistoryController extends Controller
         ->where('detail_transaksi.id_transaksi', '=', $id)
         ->get();
 
-        return $antrian_detail;
-        die();
+        // return $antrian_detail;
+        // die();
         // ->get();
 
         // return $antrian_detail;

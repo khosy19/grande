@@ -63,17 +63,27 @@ class TransaksiController extends Controller
         $waktu_start = 0 + $burst_final;
         $waiting_time = $waktu_start-$waktu_tiba[1];
 
-        $menit = explode(':', date('H:i:m'));
-        $waktu_tiba = $menits + 0;
-        $start_time = $menits + 0;
+        // $menit = explode(':', date('H:i:m'));
+        $waktu_tiba = $menits;//awal jika tidak ada pelanggan / transaksi pertama
+        $waktu_tiba_pertama = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi', '=', 'antrian.id_detail_transaksi')
+                            ->select('antrian.waktu_tiba')
+                            // ->where('id_antrian', '=', 1)
+                            ->get();
+        $waktu_tiba_pertama_ex = explode(':', date('H:i:m'));
+        $waktu_tiba_fix = $waktu_tiba_pertama_ex[1];
+        // return $waktu_tiba_pertama;
+
+        if ($waktu_tiba_pertama == null) {
+            return $waktu_tiba_fix;
+            if ($waktu_tiba_pertama != null) {
+                return $waktu_tiba;
+            }
+        }
+        $start_time = $menits;
         $burst_time = $waktu_items*$jumlah;
         $start_time2 = $start_time + $burst_time; 
         $finish_menit = $burst_time + $start_time2;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 322866fb92c32dd848e68eca8468b4ff96e712dc
         $waktu_selesai = 0;
         $sisa_waktu_pertama = 0;
         $sisa_waktu_kedua = 0;
@@ -87,17 +97,15 @@ class TransaksiController extends Controller
                 $sisa_waktu = $sisa_waktu_kedua;
                 $waktu_selesai = $jam + 2;
             }
+                if ($sisa_waktu<10) {
+                    $sisa_waktu = '0'.$sisa_waktu;
+                }
         }else{
             $waktu_selesai = $jam;
         }
-<<<<<<< HEAD
-    
-        $turn_around_time = $finish_menit - $waktu_tiba;  
-=======
         
         $turn_around_time = $finish_menit - $waktu_tiba;  
 
->>>>>>> 322866fb92c32dd848e68eca8468b4ff96e712dc
         // $waktu_tiba = 0;
         // $start_time = 
 
@@ -134,7 +142,8 @@ class TransaksiController extends Controller
             'id_detail_transaksi' =>  $id_transaksi,
             'id_station'          => $id_station,
             'id_users'            => $id_user,
-            'waktu_tiba'          => $jam.':'.$waktu_tiba.':'.$detik,
+            'waktu_tiba'          => $jam.':'.$waktu_tiba_fix.':'.$detik,
+            // 'waktu_tiba'          => $waktu_tiba_pertama,
             'start_time'          => $start_time2,
             'burst_time'          => $burst_final,
             'waiting_time'        => $waiting_time,
