@@ -19,6 +19,7 @@ class Items extends Model
         'foto',
         'tipe',
         'waktu_menu',
+        'aktif',
     ];
 
     

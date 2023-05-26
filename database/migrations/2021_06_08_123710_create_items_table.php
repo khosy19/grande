@@ -20,6 +20,7 @@ class CreateItemsTable extends Migration
             $table->integer('harga');
             $table->string('foto');
             $table->smallInteger('tipe'); //1 = makanan, 2 = minuman
+            $table->smallInteger('aktif'); //1 = makanan, 2 = minuman
             $table->integer('waktu_menu')->nullable();
             $table->timestamps();
         });

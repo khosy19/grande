@@ -45,6 +45,7 @@
                             <th class="disabled-sorting">Descriptions</th>
                             <th class="disabled-sorting">Price</th>
                             <th class="disabled-sorting">Estimate</th>
+                            <th class="disabled-sorting">Aktif</th>
                             <th class="disabled-sorting text-center">Actions</th>
                         </tr>
                     </thead>
@@ -69,7 +70,14 @@
                                 <td>{{$data->deskripsi}}</td>
                                 <td style="width: 15%">Rp {{number_format($data->harga,2,',','.')}}</td>
                                 <td style="width: 15%">{{number_format($data->waktu_menu)}} Minutes</td>
-
+                                <td>
+                                    {{-- {{ $data->aktif }} --}}
+                                    @if ($data->aktif == 1)
+                                        <button class="btn btn-xs btn-round btn-info" disabled>Active</button>
+                                    @else
+                                        <button class="btn btn-xs btn-round btn-info" disabled>Out Of Stock</button>
+                                    @endif
+                                </td>
                                 <td class="text-center">
                                     <a href="{{ route('edit_food', $data->id_items) }}"
                                         class="btn btn-simple btn-warning btn-icon edit"><i

@@ -30,14 +30,16 @@ class HistoryController extends Controller
         // // ->join('users', 'users.id', '=', 'detail_transaksi.id_users')
         // ->where('detail_transaksi.id_transaksi', '=', $id)
         // ->get();
-       
+        // $id_detail_transaksi = Auth::detail()->id_detail_transaksi;
         $antrian_detail = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi' , '=', 'antrian.id_detail_transaksi')
         ->leftjoin('station', 'station.id_station', '=', 'antrian.id_station')
         ->leftjoin('users', 'users.id', '=', 'antrian.id_antrian')
         ->leftjoin('items', 'items.id_items', '=', 'detail_transaksi.id_items')
-        ->select('antrian.*', 'items.nama_makanan', 'items.waktu_menu', 'detail_transaksi.jumlah')
+        ->select('antrian.finish_time', 'detail_transaksi.created_at', 'items.nama_makanan', 'items.waktu_menu', 'detail_transaksi.jumlah')
         ->where('detail_transaksi.id_transaksi', '=', $id)
         ->get();
+
+        return $antrian_detail;
 
         // return $antrian_detail;
         // die();

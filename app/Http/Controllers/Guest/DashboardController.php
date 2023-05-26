@@ -10,8 +10,8 @@ class DashboardController extends Controller
 {
     public function index(){
 
-        $makanan = Items::wheretipe(1)->get();
-        $minuman = Items::wheretipe(2)->get();
+        $makanan = Items::wheretipe(1)->whereaktif(1)->get();
+        $minuman = Items::wheretipe(2)->whereaktif(1)->get();
         $snack = Items::wheretipe(3)->get();
         // dd($makanan);
         $hour = date('H');

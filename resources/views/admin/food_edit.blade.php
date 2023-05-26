@@ -58,6 +58,16 @@
                         <option {{ $data->tipe == 2 ? 'selected' : '' }} value="2"> DRINK</option>
                     </select>
                 </div>
+                <div class="form-group label-floating">
+                    <label class="control-label">
+                        Active
+                        <small>*</small>
+                    </label>
+                    <select class="selectpicker" data-style="select-with-transition" name="aktif">
+                        <option {{ $data->aktif == 1 ? 'selected' : '' }} value="1"> ACTIVE</option>
+                        <option {{ $data->aktif == 2 ? 'selected' : '' }} value="2"> OUT OF STOCK</option>
+                    </select>
+                </div>
                 <h5>Upload Display</h5>
                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                     <div class="fileinput-new thumbnail">

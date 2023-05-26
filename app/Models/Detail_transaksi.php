@@ -15,10 +15,7 @@ class Detail_transaksi extends Model
     protected $fillable = [
         'id_transaksi',
         'id_items',
-        // 'id_users',
         'jumlah',
-        'waktu_pesan',
-        'waktu_tunggu',
-        'waktu_selesai',
+
     ];
 }

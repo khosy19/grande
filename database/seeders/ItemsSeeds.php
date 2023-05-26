@@ -24,7 +24,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 25000,
             'foto'          => 'menu/ayam_taliwang.jpg',
             'tipe'          => 1,
-            'waktu_menu'    => random_int(1, 10),
+            'waktu_menu'    => 10,
+            'aktif'         => 1,
         ]);
         
         Items::create([
@@ -33,7 +34,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 14000,
             'foto'          => 'menu/blukutuk_lele.jpg',
             'tipe'          => 1,
-            'waktu_menu'    => random_int(1, 10),
+            'waktu_menu'    => 10,
+            'aktif'         => 1,
         ]);
 
         Items::create([
@@ -42,7 +44,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 12000,
             'foto'          => 'menu/churos_coklat.jpg',
             'tipe'          => 1,
-            'waktu_menu'    => random_int(1, 10),
+            'waktu_menu'    => 10,
+            'aktif'         => 1,
         ]);
 
         Items::create([
@@ -51,7 +54,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 6000,
             'foto'          => 'menu/cleo.jpg',
             'tipe'          => 2,
-            'waktu_menu'    => random_int(1, 10),
+            'waktu_menu'    => 1,
+            'aktif'         => 1,
         ]);
 
         Items::create([
@@ -60,7 +64,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 22000,
             'foto'          => 'menu/dori_blackpaper.jpg',
             'tipe'          => 1,
-            'waktu_menu'    => random_int(10, 15),
+            'waktu_menu'    => 15,
+            'aktif'         => 1,
         ]);
 
         Items::create([
@@ -69,7 +74,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 6000,
             'foto'          => 'menu/es_teh.jpg',
             'tipe'          => 2,
-            'waktu_menu'    => random_int(1, 5),
+            'waktu_menu'    => 3,
+            'aktif'         => 1,
         ]);
 
         Items::create([
@@ -78,7 +84,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 25000,
             'foto'          => 'menu/fish_and_chips.jpg',
             'tipe'          => 1,
-            'waktu_menu'    => random_int(1, 10),
+            'waktu_menu'    => 10,
+            'aktif'         => 1,
         ]);
 
         Items::create([
@@ -87,7 +94,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 18000,
             'foto'          => 'menu/frappe_milo.jpg',
             'tipe'          => 2,
-            'waktu_menu'    => random_int(1, 10),
+            'waktu_menu'    => 7,
+            'aktif'         => 2,
         ]);
 
         Items::create([
@@ -96,7 +104,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 7000,
             'foto'          => 'menu/kopi_susu.jpg',
             'tipe'          => 2,
-            'waktu_menu'    => random_int(1, 10),
+            'waktu_menu'    => 5,
+            'aktif'         => 2,
         ]);
 
         Items::create([
@@ -105,7 +114,8 @@ class ItemsSeeds extends Seeder
             'harga'         => 22000,
             'foto'          => 'menu/snack_platter.jpg',
             'tipe'          => 1,
-            'waktu_menu'    => random_int(10, 15),
+            'waktu_menu'    => 15,
+            'aktif'         => 1,
         ]);
     }
 }
