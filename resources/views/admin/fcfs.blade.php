@@ -19,6 +19,20 @@
             <h4 class="card-title">FCFS Antrian
             </h4>
             <div class="toolbar">
+                {{-- Filter fcfs --}}
+                <form action="{{ route('fcfs') }}" class="action" method="GET">
+                    <div class="form-group">
+                        {{-- <a href="{{ route('add_transaksi') }}" class="btn btn-rose pull-right"><i class="material-icons">post_add</i> Add Transaction</a> --}}
+                        <label for="tipe">Pilih Station</label>
+                        <select name="tipe" class="form-control" required>
+                            <option value="makanan" {{ Request::get('tipe') == 'makanan' ? 'selected' : '' }}>Makanan</option>
+                            <option value="minuman" {{ Request::get('tipe') == 'minuman' ? 'selected' : '' }}>Minuman</option>
+                            {{-- <option value="waiting">Waiting</option>
+                            <option value="finish">Finish</option> --}}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                    </form>
             </div>
             <div class="material-datatables">
                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0"
@@ -35,7 +49,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($fcfs as $fcfs)
+                        @foreach($tipe as $fcfs)
                             <tr>
                                 <td class="text-center">{{ $fcfs->invoice }}</td>
                                 <td class="text-center">{{ $fcfs->waktu_tiba }}</td>
