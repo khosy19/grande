@@ -81,6 +81,13 @@
                     <p>Antrian FCFS</p>
                 </a>
             </li>
+            <li
+                class="{{ (request()->is(Auth::user()->level.'/management/laporan*')) ? 'active' : '' }}">
+                <a href="{{ url(Auth::user()->level.'/management/laporan') }}">
+                    <i class="material-icons">receipt_long</i>
+                    <p>Laporan</p>
+                </a>
+            </li>
             @endif
             @if(Auth::user()->level == 'guest')
             <li

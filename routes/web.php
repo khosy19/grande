@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use Admin\LaporanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,10 @@ Route::middleware('auth', 'validatelevels:admin')->group(function () {
     Route::get('/admin/management/transaksi/detail/{id}', [Admin\TransaksiController::class, 'detail'])->name('transaksi_detail');
     
     Route::get('/admin/management/fcfs', [Admin\AntrianController::class, 'index'])->name('fcfs');
+    Route::get('/admin/management/laporan', [Admin\LaporanController::class, 'index'])->name('halaman_laporan');
+    Route::get('/admin/management/cetak_laporan_penjualan', [Admin\LaporanController::class, 'cetak_laporan_penjualan'])->name('laporan_penjualan');
+    Route::get('/admin/management/cetak_laporan_menu_favorit', [Admin\LaporanController::class, 'cetak_menu_favorit'])->name('menu_favorit');
+    Route::get('/admin/management/cetak_laporan_fcfs', [Admin\LaporanController::class, 'cetak_laporan_fcfs'])->name('laporan_fcfs');
 
     Route::post('/admin/management/user/store', [Admin\UsersController::class, 'store'])->name('store_users');
     Route::post('/admin/management/room/store', [Admin\RoomController::class, 'store'])->name('store_rooms');

@@ -41,8 +41,8 @@
                         <tr>
                             <th class="text-center">Invoice</th>
                             <th class="text-center">Waktu Tiba</th>
-                            <th class="text-center">Burst Time</th>
                             <th class="text-center">Start Time</th>
+                            <th class="text-center">Burst Time</th>
                             <th class="text-center">Finish Time</th>
                             <th class="text-center">Waiting Time</th>
                             <th class="text-center">TAT</th>
@@ -53,8 +53,8 @@
                             <tr>
                                 <td class="text-center">{{ $fcfs->invoice }}</td>
                                 <td class="text-center">{{ $fcfs->waktu_tiba }}</td>
-                                <td class="text-center">{{ $fcfs->burst_time }}</td>
                                 <td class="text-center">{{ $fcfs->start_time }}</td>
+                                <td class="text-center">{{ $fcfs->burst_time }}</td>
                                 <td class="text-center">{{ $fcfs->finish_time }}</td>
                                 <td class="text-center">{{ $fcfs->waiting_time }}</td>
                                 <td class="text-center">{{ $fcfs->tat }}</td>

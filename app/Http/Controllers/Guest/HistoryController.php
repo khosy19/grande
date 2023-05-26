@@ -30,16 +30,17 @@ class HistoryController extends Controller
         // // ->join('users', 'users.id', '=', 'detail_transaksi.id_users')
         // ->where('detail_transaksi.id_transaksi', '=', $id)
         // ->get();
-        // $id_detail_transaksi = Auth::detail()->id_detail_transaksi;
+       
         $antrian_detail = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi' , '=', 'antrian.id_detail_transaksi')
         ->leftjoin('station', 'station.id_station', '=', 'antrian.id_station')
         ->leftjoin('users', 'users.id', '=', 'antrian.id_antrian')
         ->leftjoin('items', 'items.id_items', '=', 'detail_transaksi.id_items')
-        ->select('antrian.finish_time', 'detail_transaksi.created_at', 'items.nama_makanan', 'items.waktu_menu', 'detail_transaksi.jumlah')
-        ->where('detail_transaksi.id_transaksi', '=', $id)
+        ->leftjoin('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.id_transaksi')
+        ->select('antrian.*', 'items.nama_makanan', 'items.waktu_menu', 'detail_transaksi.jumlah')
+        ->where('antrian.id_detail_transaksi', '=', $id)
+        // ->groupBy('detail_transaksi.id_transaksi')
+        // ->havingRaw('COUNT(detail_transaksi.id_detail_transaksi) >= 1')
         ->get();
-
-        return $antrian_detail;
 
         // return $antrian_detail;
         // die();
@@ -68,12 +69,12 @@ class HistoryController extends Controller
         
         // $waktu_tunggu = count $waktu_menu;        
         return view('guest.history_detail', [
-            'detail' => $antrian_detail,
+            'antrian_detail' => $antrian_detail,
             // 'tb' => $time_array_waktu_tiba,
             // 'bt' => $time_array_burst_time,
             // 'st' => $time_array_start_time,
             // 'fin' => $time_array_finish_time,
-        ], compact('antrian_detail'));
+        ]);
     }
 
     public function hitungWaktuTunggu($waktuselesai){

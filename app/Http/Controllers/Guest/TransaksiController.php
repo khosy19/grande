@@ -50,17 +50,20 @@ class TransaksiController extends Controller
             ]);
             
         }
-        // $waktu = 
         $jam = date('H');
         $menit = explode(':', date('H:i:m'));
         $menits = $menit[1];
         $detik = date('s');
 
-        $burst_final = $menits+$burst;
-        $burst_final_makanan = $menits+$burst;
-        $burst_final_minuman = $menits+$burst;
         $waktu_tiba = explode(':', date('H:i:m'));
-        $waktu_start = 0 + $burst_final;
+        $waktu_start = 0;
+        $burst = 0;
+        // $waktu_start = 0 + $burst_final;
+        if ($waktu_start = null) {
+             $waktu_start_mulai = $waktu_start + 0;
+        }else{
+             $waktu_start_mulai = $waktu_start + $burst;
+        }
         $waiting_time = $waktu_start-$waktu_tiba[1];
 
         // $menit = explode(':', date('H:i:m'));
@@ -106,35 +109,6 @@ class TransaksiController extends Controller
         
         $turn_around_time = $finish_menit - $waktu_tiba;  
 
-        // $waktu_tiba = 0;
-        // $start_time = 
-
-
-        // $tipe = $request->input('tipe');
-        // if($tipe == 1){
-        //     Antrian::create([
-        //         'id_detail_transaksi' =>  $id_transaksi,
-        //         'id_station' => 1,
-        //         'id_users' => $id_user,
-        //         'waktu_tiba' => date('H:i:s'),
-        //         'start_time' => date('H:i:s'),
-        //         'burst_time' => $jam.':'.$burst_final_makanan.':'.$detik,
-        //         // 'waiting_time' => $jam.':'.$burst_final_makanan.':'.$detik,
-        //         // 'tat' => $jam.':'.$burst_final.':'.$detik,
-        //     ]);
-        // }elseif($tipe == 2){
-        //     Antrian::create([
-        //         'id_detail_transaksi' =>  $id_transaksi,
-        //         'id_station' => 2,
-        //         'id_users' => $id_user,
-        //         'waktu_tiba' => date('H:i:s'),
-        //         'start_time' => date('H:i:s'),
-        //         'burst_time' => $jam.':'.$burst_final_minuman.':'.$detik,
-        //         // 'tat' => $jam.':'.$burst_final.':'.$detik,
-        //         // 'waiting_time' => $jam.':'.$burst_final.':'.$detik,
-        //     ]);
-        // }
-        // $data = $tipe->unique('tipe', 1);
         $id_station = Station::orderby('id_station', 'desc')->first()->id_station;
         
         Antrian::create([
@@ -144,8 +118,8 @@ class TransaksiController extends Controller
             'id_users'            => $id_user,
             'waktu_tiba'          => $jam.':'.$waktu_tiba_fix.':'.$detik,
             // 'waktu_tiba'          => $waktu_tiba_pertama,
-            'start_time'          => $start_time2,
-            'burst_time'          => $burst_final,
+            'start_time'          => $waktu_start_mulai,
+            'burst_time'          => $burst,
             'waiting_time'        => $waiting_time,
             'finish_time'         => $waktu_selesai.':'.$sisa_waktu,
             'tat'                 => $turn_around_time,
