@@ -58,6 +58,7 @@ class DetailsController extends Controller
             'waktu_items'   => $items[0]->waktu_menu,
             'nama_items'    => $items[0]->nama_makanan,
             'harga_items'   => $items[0]->harga,
+            'jenis_items'   => $items[0]->tipe,
             'jumlah'        => $qty,
 
         ];

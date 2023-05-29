@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Guest;
 
 use Auth;
 use Session;
+use DB;
 use Carbon\Carbon;
 use App\Models\Antrian;
+use App\Models\Antrian_minum;
 use App\Models\Station;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Models\Detail_transaksi;
+use App\Models\Detail_transaksi_minum;
 use App\Http\Controllers\Controller;
 
 class TransaksiController extends Controller
@@ -36,124 +39,105 @@ class TransaksiController extends Controller
         $invoice->invoice = "TRANS/".date("Y")."/".date("M")."/00".$id_transaksi;
         $invoice->save();
 
+        $id_station = Station::orderby('id_station', 'desc')->first()->id_station;
+
         foreach($cart as $item =>$val){
             $id_items = $val['id_items'];
             $jumlah = $val['jumlah'];
             $waktu_items = $val['waktu_items'];
+            $tipe = $val['jenis_items'];
 
             $burst = $waktu_items * $jumlah;
-            
 
-            Detail_transaksi::create([
-                'id_transaksi' => $id_transaksi,
-                'id_items'     => $id_items,
-                'jumlah'       => $jumlah,
-            ]);
-            
-        }
-        $waktu = explode(':', date('H:i:m'));
-        $jam = $waktu[0];
-        $menit = $waktu[1];
-        $detik = $waktu[2];
+            $waktu_awal = date('H:i:s');
+            $cekData = DB::table('antrian')->count(); 
 
-        // $waktu_tiba = explode(':', date('H:i:m'));
-        $waktu_tiba = explode(':', date('H:i:m'));
-        $waktu_tiba_jam = $waktu_tiba[0];
-        $waktu_tiba_menit = $waktu_tiba[1];
-        $waktu_tiba_detik = $waktu_tiba[2];
-        $waktu_start = 0;
-        // $burst = 0;
-        // $waktu_start = 0 + $burst_final;
-        if ($waktu_start = null) {
-             $waktu_start = now();
-        }else{
-             $waktu_start_mulai = $waktu_start + $burst;
-        }
-        $waiting_time = $waktu_start-$waktu_tiba[1];
+            $previousData = DB::table('antrian')
+                                ->select('start_time', 'burst_time')
+                                ->orderBy('start_time', 'desc')
+                                ->limit(1)
+                                ->get();
+                                
 
-        // $menit = explode(':', date('H:i:m'));
-        $waktu_tiba = $menit;//awal jika tidak ada pelanggan / transaksi pertama
-        $waktu_tiba_pertama = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi', '=', 'antrian.id_detail_transaksi')
-                            ->select('antrian.waktu_tiba')
-                            // ->where('id_antrian', '=', 1)
-                            ->get();
-        $waktu_tiba_pertama_ex = explode(':', date('H:i:m'));
-        $waktu_tiba_fix = $waktu_tiba_pertama_ex[1];
-        // return $waktu_tiba_pertama;
+            // menghitung start time
+            if ($previousData->isNotEmpty()) {
+                $startTime = $previousData[0]->start_time;
+                $burst_data = $previousData[0]->burst_time;
 
-        if ($waktu_tiba_pertama == null) {
-            return $waktu_tiba_fix;
-            if ($waktu_tiba_pertama != null) {
-                return $waktu_tiba;
+                $dateTime = Carbon::createFromFormat('H:i:s', $startTime);
+                $dateTime->addMinutes($burst_data);
+
+                $ST = $dateTime->format('H:i:s');
+                
             }
-        }
-        $start_time = $menit;
-        $burst_time = $waktu_items*$jumlah;
-        $start_time2 = $start_time + $burst_time; 
-        $finish_menit = $burst_time + $start_time2;
-
-        $waktu_selesai = 0;
-        $sisa_waktu_pertama = 0;
-        $sisa_waktu_kedua = 0;
-        $sisa_waktu = 0;
-        if ($finish_menit > 60) {
-            $sisa_waktu_pertama = $finish_menit - 60;
-            $sisa_waktu = $sisa_waktu_pertama;
-            $waktu_selesai = $jam + 1;
-            if ($sisa_waktu > 60) {
-                $sisa_waktu_kedua = $sisa_waktu_pertama - 60;
-                $sisa_waktu = $sisa_waktu_kedua;
-                $waktu_selesai = $jam + 2;
+            else{
+                $ST = $waktu_awal;
             }
-                if ($sisa_waktu<10) {
-                    $sisa_waktu = '0'.$sisa_waktu;
-                }
-        }else{
-            $waktu_selesai = $jam;
+
+
+            // menghitung waiting time
+            $StartDateTime = Carbon::createFromFormat('H:i:s', $ST);
+            $WaktuTibaTime = Carbon::createFromFormat('H:i:s', $waktu_awal);
+
+            $WT = $StartDateTime->diffInMinutes($WaktuTibaTime);
+
+            // menghitung finish time
+            $Start_Time_Date = Carbon::createFromFormat('H:i:s', $ST);
+            $Start_Time_Date->addMinutes($burst);
+
+            $FT  = $Start_Time_Date->format('H:i:s');
+            
+            // menghitung tat
+            // $FinishDatesTime = Carbon::createFromFormat('H:i:s', $FT);
+            // $WaktuTibaHE = Carbon::createFromFormat('H:i:s', $WT);
+
+            // $TAT = $FinishDateTime->diffInMinutes($WaktuTibaHE);
+        
+            // return $FT;
+            // die();
+            
+            // makanan 1, minuman 2
+            if($tipe == 1){
+                Detail_transaksi::create([
+                    'id_transaksi' => $id_transaksi,
+                    'id_items'     => $id_items,
+                    'jumlah'       => $jumlah,
+                ]);
+
+                Antrian::create([
+                    'id_detail_transaksi' => $id_transaksi,
+                    'id_station'          => $id_station,
+                    'id_users'            => $id_user,
+                    'waktu_tiba'          => $waktu_awal,
+                    'start_time'          => ($cekData > 0) ? $ST : $waktu_awal,
+                    'burst_time'          => $burst,
+                    'waiting_time'        => $WT,
+                    'finish_time'         => $FT,
+                    'tat'                 => 0,
+                ]);
+            }else{
+                Detail_transaksi_minum::create([
+                    'id_transaksi_minuman' => $id_transaksi,
+                    'id_items_minuman'     => $id_items,
+                    'jumlah_minuman'       => $jumlah,
+                ]);
+
+                Antrian_minum::create([
+                    'id_detail_transaksi_minum' => $id_transaksi,
+                    'id_station_minum'          => $id_station,
+                    'id_users_minum'            => $id_user,
+                    'waktu_tiba_minum'          => $waktu_awal,
+                    'start_time_minum'          => ($cekData > 0) ? $ST : $waktu_awal,
+                    'burst_time_minum'          => $burst,
+                    'waiting_time_minum'        => $WT,
+                    'finish_time_minum'         => $FT,
+                    'tat_minum'                 => 0,
+                ]);
+            }
+
+            
         }
-        
-        $turn_around_time = $finish_menit - $waktu_tiba;  
 
-
-        //PAKE CARBON
-        // $time = now();
-        //waktu_tiba / arrival_time
-        // $waktu_tiba = now()->format("d-m-y H:i:s");
-        //waktu_mulai / start_time
-        // $waktu_mulai= now();
-        // $selisih_menit = $waktu_mulai->diffInMinutes($waktu_tiba);
-        // $waktu_mulai = $waktu_mulai->subMinute($waktu_tiba)->format("H:i:s");
-        //waktu_selesai / finish time
-        // $waktu_selesai = Carbon::parse($waktu_selesai);
-
-        // $waktu_selesai2 = 0;
-        // if (is_numeric($burst) && is_numeric($selisih_menit)) {
-        //     $waktu_selesai2 = $burst + $selisih_menit;
-      
-        // }
-        
-        // //waktu_tunggu / waiting time
-        // $waktu_tunggu = Carbon::parse($waktu_tiba)->diffInMinutes($waktu_mulai);
-        // $tat = Carbon::parse($waktu_tiba)->diffInMinutes($waktu_selesai2);
-
-        
-        $id_station = Station::orderby('id_station', 'desc')->first()->id_station;
-        
-        Antrian::create([
-            // 'id_detail_transaksi' =>  $id_transaksi,
-            'id_detail_transaksi' =>  $id_transaksi,
-            'id_station'          => $id_station,
-            'id_users'            => $id_user,
-            // 'waktu_tiba'          => $waktu_tiba,
-            // 'waktu_tiba'          => $waktu_tiba_pertama,
-            'waktu_tiba'          => $jam.':'.$waktu_tiba_fix.':'.$detik,
-            'start_time'          => $jam.':'.$start_time.':'.$detik,
-            'burst_time'          => $burst,
-            'waiting_time'        => $waiting_time,
-            'finish_time'         => $finish_menit,
-            'tat'                 => $turn_around_time,
-        ]);
-        // 'start_time' => date('H:i:s'),
 
         //1 cash 2 cc
         if ($request->method != 1) {

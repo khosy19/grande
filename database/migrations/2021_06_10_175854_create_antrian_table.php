@@ -29,16 +29,16 @@ class CreateAntrianTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('antrian', function ($table) {
-            $table->foreign('id_detail_transaksi')->references('id_detail_transaksi')->on('detail_transaksi')->onDelete('cascade');
-        });
+        // Schema::table('antrian', function ($table) {
+        //     $table->foreign('id_detail_transaksi')->references('id_detail_transaksi')->on('detail_transaksi')->onDelete('cascade');
+        // });
 
-        Schema::table('antrian', function ($table) {
-            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
-        });
-        Schema::table('antrian', function ($table) {
-            $table->foreign('id_station')->references('id_station')->on('station')->onDelete('cascade');
-        });
+        // Schema::table('antrian', function ($table) {
+        //     $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+        // });
+        // Schema::table('antrian', function ($table) {
+        //     $table->foreign('id_station')->references('id_station')->on('station')->onDelete('cascade');
+        // });
     }
 
     /**
