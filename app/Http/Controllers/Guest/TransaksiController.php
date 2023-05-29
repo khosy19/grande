@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use Auth;
 use Session;
+use Carbon\Carbon;
 use App\Models\Antrian;
 use App\Models\Station;
 use App\Models\Transaksi;
@@ -40,7 +41,7 @@ class TransaksiController extends Controller
             $jumlah = $val['jumlah'];
             $waktu_items = $val['waktu_items'];
 
-            $burst = $waktu_items*$jumlah;
+            $burst = $waktu_items * $jumlah;
             
 
             Detail_transaksi::create([
@@ -50,24 +51,28 @@ class TransaksiController extends Controller
             ]);
             
         }
-        $jam = date('H');
-        $menit = explode(':', date('H:i:m'));
-        $menits = $menit[1];
-        $detik = date('s');
+        $waktu = explode(':', date('H:i:m'));
+        $jam = $waktu[0];
+        $menit = $waktu[1];
+        $detik = $waktu[2];
 
+        // $waktu_tiba = explode(':', date('H:i:m'));
         $waktu_tiba = explode(':', date('H:i:m'));
+        $waktu_tiba_jam = $waktu_tiba[0];
+        $waktu_tiba_menit = $waktu_tiba[1];
+        $waktu_tiba_detik = $waktu_tiba[2];
         $waktu_start = 0;
-        $burst = 0;
+        // $burst = 0;
         // $waktu_start = 0 + $burst_final;
         if ($waktu_start = null) {
-             $waktu_start_mulai = $waktu_start + 0;
+             $waktu_start = now();
         }else{
              $waktu_start_mulai = $waktu_start + $burst;
         }
         $waiting_time = $waktu_start-$waktu_tiba[1];
 
         // $menit = explode(':', date('H:i:m'));
-        $waktu_tiba = $menits;//awal jika tidak ada pelanggan / transaksi pertama
+        $waktu_tiba = $menit;//awal jika tidak ada pelanggan / transaksi pertama
         $waktu_tiba_pertama = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi', '=', 'antrian.id_detail_transaksi')
                             ->select('antrian.waktu_tiba')
                             // ->where('id_antrian', '=', 1)
@@ -82,7 +87,7 @@ class TransaksiController extends Controller
                 return $waktu_tiba;
             }
         }
-        $start_time = $menits;
+        $start_time = $menit;
         $burst_time = $waktu_items*$jumlah;
         $start_time2 = $start_time + $burst_time; 
         $finish_menit = $burst_time + $start_time2;
@@ -109,6 +114,29 @@ class TransaksiController extends Controller
         
         $turn_around_time = $finish_menit - $waktu_tiba;  
 
+
+        //PAKE CARBON
+        // $time = now();
+        //waktu_tiba / arrival_time
+        // $waktu_tiba = now()->format("d-m-y H:i:s");
+        //waktu_mulai / start_time
+        // $waktu_mulai= now();
+        // $selisih_menit = $waktu_mulai->diffInMinutes($waktu_tiba);
+        // $waktu_mulai = $waktu_mulai->subMinute($waktu_tiba)->format("H:i:s");
+        //waktu_selesai / finish time
+        // $waktu_selesai = Carbon::parse($waktu_selesai);
+
+        // $waktu_selesai2 = 0;
+        // if (is_numeric($burst) && is_numeric($selisih_menit)) {
+        //     $waktu_selesai2 = $burst + $selisih_menit;
+      
+        // }
+        
+        // //waktu_tunggu / waiting time
+        // $waktu_tunggu = Carbon::parse($waktu_tiba)->diffInMinutes($waktu_mulai);
+        // $tat = Carbon::parse($waktu_tiba)->diffInMinutes($waktu_selesai2);
+
+        
         $id_station = Station::orderby('id_station', 'desc')->first()->id_station;
         
         Antrian::create([
@@ -116,12 +144,13 @@ class TransaksiController extends Controller
             'id_detail_transaksi' =>  $id_transaksi,
             'id_station'          => $id_station,
             'id_users'            => $id_user,
-            'waktu_tiba'          => $jam.':'.$waktu_tiba_fix.':'.$detik,
+            // 'waktu_tiba'          => $waktu_tiba,
             // 'waktu_tiba'          => $waktu_tiba_pertama,
-            'start_time'          => $waktu_start_mulai,
+            'waktu_tiba'          => $jam.':'.$waktu_tiba_fix.':'.$detik,
+            'start_time'          => $jam.':'.$start_time.':'.$detik,
             'burst_time'          => $burst,
             'waiting_time'        => $waiting_time,
-            'finish_time'         => $waktu_selesai.':'.$sisa_waktu,
+            'finish_time'         => $finish_menit,
             'tat'                 => $turn_around_time,
         ]);
         // 'start_time' => date('H:i:s'),
