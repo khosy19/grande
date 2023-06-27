@@ -88,6 +88,14 @@ Route::middleware('auth', 'validatelevels:guest')->group(function () {
     Route::get('/guest/history/detail/{id}', [Guest\HistoryController::class, 'detail'])->name('history_detail');
 });
 
+//guest m001
+Route::get('/guest/dashboard/m001', [Guest\DashboardController::class, 'index'])->name('dashboard_1');
+//guest m002
+Route::get('/guest/dashboard/m002', [Guest\DashboardController::class, 'index'])->name('dashboard_2');
+//guest m003
+Route::get('/guest/dashboard/m003', [Guest\DashboardController::class, 'index'])->name('dashboard_3');
+
+
 // produksi
 Route::middleware('auth', 'validatelevels:produksi')->group(function () {
     Route::get('/produksi/dashboard', [Produksi\DashboardController::class, 'index'])->name('dashboard_produksi');

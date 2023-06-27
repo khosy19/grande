@@ -70,12 +70,12 @@ class TransaksiController extends Controller
     }
     public function cetak_struk(Request $request){
         $cetak_struk = Antrian::join('detail_transaksi', 'detail_transaksi.id_detail_transaksi' , '=', 'antrian.id_detail_transaksi')
-        ->leftjoin('station', 'station.id_station', '=', 'antrian.id_station')
-        ->leftjoin('users', 'users.id', '=', 'antrian.id_antrian')
-        ->leftjoin('items', 'items.id_items', '=', 'detail_transaksi.id_items')
-        ->leftjoin('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.id_transaksi')
-        ->select('antrian.finish_time', 'items.nama_makanan', 'items.harga', 'detail_transaksi.jumlah', 'transaksi.total', 'transaksi.invoice', 'users.*')
-        // ->where('detail_transaksi.id_transaksi', '=', $id)
+        // ->leftjoin('station', 'station.id_station', '=', 'antrian.id_station')
+        ->join('users', 'users.id', '=', 'antrian.id_users')
+        ->join('items', 'items.id_items', '=', 'detail_transaksi.id_items')
+        ->join('transaksi', 'transaksi.id_transaksi', '=', 'detail_transaksi.id_transaksi')
+        ->select('antrian.finish_time', 'items.nama_makanan', 'items.harga', 'detail_transaksi.jumlah', 'transaksi.total', 'transaksi.invoice', 'users.room', 'users.name')
+        // ->where('transaksi.id', '=', $id)
         ->first();
 
         // $datetime_finish_time = $cetak_struk->finish_time;

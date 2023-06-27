@@ -75,13 +75,13 @@
         // var formcbckuser = event.target.form; // storing the form
         // console.log(formcbckuser);
         swal({
-                title: "Are you sure to deactive this user?",
-                text: "You can turn it back active later",
+                title: "Apakah Anda Ingin Mengubah Status Transaksi?",
+                text: "Ubah Status Transaksi",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, deactive it!",
-                cancelButtonText: "No, cancel it!",
+                confirmButtonText: "Ya",
+                cancelButtonText: "Tidak",
                 closeOnConfirm: false,
                 closeOnCancel: false
             },

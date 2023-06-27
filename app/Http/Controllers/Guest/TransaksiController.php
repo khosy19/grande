@@ -91,7 +91,7 @@ class TransaksiController extends Controller
             // $FinishDatesTime = Carbon::createFromFormat('H:i:s', $FT);
             // $WaktuTibaHE = Carbon::createFromFormat('H:i:s', $WT);
 
-            // $TAT = $FinishDateTime->diffInMinutes($WaktuTibaHE);
+            // $TAT = $FinishDatesTime->diffInMinutes($waktu_awal);
         
             // return $FT;
             // die();

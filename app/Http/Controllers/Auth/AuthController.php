@@ -16,6 +16,8 @@ class AuthController extends Controller
     public function login(Request $request){
         if(Auth::attempt($request->only('room', 'password'))){
             return redirect(Auth::user()->level.'/dashboard');
+        }elseif (Auth::attempt($request->only('room'.'m001', 'password'.'m001'))){    
+            return redirect(Auth::user()->level.'/dashboard/1');
         }
         return redirect('/')->withErrors(['Kode tidak sesuai silahkan coba kembali']);
     }

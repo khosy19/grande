@@ -36,7 +36,8 @@
             <tbody>
               <tr>
                 {{-- <td colspan="3">PESAN DISINI</td> --}}
-                <td class="tg-fymr">{!! QrCode::size(300)->generate(Request::url('http://127.0.0.1:8000/guest/dashboard')) !!}</td>
+                <td class="tg-fymr">{!! QrCode::size(300)->generate(Request::url('https://6c2129e63586-12817177712444975226.ngrok-free.app')) !!}</td>
+                {{-- <td class="tg-fymr">{!! QrCode::size(300)->generate(Request::url('http://127.0.0.1:8000/guest/dashboard')) !!}</td> --}}
                 <td colspan="3" rowspan="3">
                 </td>
               </tr>
