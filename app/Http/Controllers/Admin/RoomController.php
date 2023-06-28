@@ -75,18 +75,13 @@ class RoomController extends Controller
             'success' => 'Account Delete Successfully'
         ]);
     }
-    public function cetakStruk($id){
-        // $pdf= PDF::loadView('admin.cetak_qr', ['cetakStruk'=> $cetak]);
-        // return $pdf->download('cetak_qr.pdf');
-        
-        $cetakStruk = User::find($id);
+    public function cetakqr($id){
+        $cetakqr = User::find($id);
         // return $cetakStruk;
         // die();
         return view('admin.cetak_qr',[
-            'cetakStruk' => $cetakStruk,
+            'cetakqr' => $cetakqr,
         ]);
-        // $url = Storage::url('/admin/cetak_qr');
-        // return Storage::download('file.jpg');
 
     }
 }

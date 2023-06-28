@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Request;
+    use SimpleSoftwareIO\QrCode\Facades\QrCode;
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,16 +40,16 @@
             <tbody>
               <tr>
                 {{-- <td colspan="3">PESAN DISINI</td> --}}
-                <td class="tg-fymr">{!! QrCode::size(300)->generate(Request::url('https://6c2129e63586-12817177712444975226.ngrok-free.app')) !!}</td>
+                <td class="tg-fymr">{!! QrCode::size(300)->generate(url('https://6c2129e63586-12817177712444975226.ngrok-free.app')) !!}</td>
                 {{-- <td class="tg-fymr">{!! QrCode::size(300)->generate(Request::url('http://127.0.0.1:8000/guest/dashboard')) !!}</td> --}}
                 <td colspan="3" rowspan="3">
                 </td>
               </tr>
               <tr>
-                <td colspan="3">USERNAME : {{ ($cetakStruk->room) }}</td>
+                <td colspan="3">USERNAME : {{ ($cetakqr->room) }}</td>
             </tr>
             <tr>
-            <td colspan="3">PASSWORD : {{ ($cetakStruk->room) }}</td>
+            <td colspan="3">PASSWORD : {{ ($cetakqr->room) }}</td>
         
             </tr>
             </tbody>

@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('room')->unique();
             $table->string('level');
             $table->string('password');
-            $table->string('link')->default('http://food.test');
+            $table->string('link')->default('https://6c2129e63586-12817177712444975226.ngrok-free.app');
             $table->smallInteger('active')->default(0);
             $table->rememberToken();
             $table->timestamps();

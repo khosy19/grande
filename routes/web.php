@@ -35,7 +35,8 @@ Route::middleware('auth', 'validatelevels:admin')->group(function () {
     Route::view('/admin/management/room/add', 'admin.room_add')->name('add_room');
     Route::get('/admin/management/room/edit/{id}', [Admin\RoomController::class, 'edit'])->name('edit_room');
     Route::get('/admin/management/room/delete/{id}', [Admin\RoomController::class, 'delete'])->name('delete_room');
-    Route::get('/admin/management/room/cetak/{id}', [Admin\RoomController::class, 'cetakStruk'])->name('cetakStruk');
+    // Route::get('/admin/management/room/cetak/{id}', [Admin\RoomController::class, 'cetakqr'])->name('cetakqr');
+    Route::get('/admin/management/room/cetak/{id}', [Admin\RoomController::class, 'cetakqr'])->name('cetakqr');
 
     Route::get('/admin/management/food', [Admin\FoodController::class, 'index'])->name('food');
     Route::view('/admin/management/food/add', 'admin.food_add')->name('add_food');

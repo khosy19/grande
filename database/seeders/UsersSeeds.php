@@ -61,6 +61,7 @@ class UsersSeeds extends Seeder
             'level' => 'guest',
             'password' => bcrypt('m001'),
             'active'=> '1',
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'remember_token' => Str::random(60),
         ]);
 
@@ -70,6 +71,7 @@ class UsersSeeds extends Seeder
             'level' => 'guest',
             'password' => bcrypt('m002'),
             'active'=> '1',
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'remember_token' => Str::random(60),
         ]);
         User::create([
@@ -77,6 +79,7 @@ class UsersSeeds extends Seeder
             'room' => 'm003',
             'level' => 'guest',
             'password' => bcrypt('m003'),
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);
@@ -85,6 +88,7 @@ class UsersSeeds extends Seeder
             'room' => 'm004',
             'level' => 'guest',
             'password' => bcrypt('m004'),
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);
@@ -93,6 +97,7 @@ class UsersSeeds extends Seeder
             'room' => 'm005',
             'level' => 'guest',
             'password' => bcrypt('m005'),
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);
@@ -101,6 +106,7 @@ class UsersSeeds extends Seeder
             'room' => 'm006',
             'level' => 'guest',
             'password' => bcrypt('m006'),
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);
@@ -109,6 +115,7 @@ class UsersSeeds extends Seeder
             'room' => 'm007',
             'level' => 'guest',
             'password' => bcrypt('m007'),
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);
@@ -117,6 +124,7 @@ class UsersSeeds extends Seeder
             'room' => 'm008',
             'level' => 'guest',
             'password' => bcrypt('m008'),
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);
@@ -126,6 +134,7 @@ class UsersSeeds extends Seeder
             'room' => 'm009',
             'level' => 'guest',
             'password' => bcrypt('m009'),
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'active'=> '0',
             'remember_token' => Str::random(60),
         ]);
@@ -135,6 +144,7 @@ class UsersSeeds extends Seeder
             'room' => 'm010',
             'level' => 'guest',
             'password' => bcrypt('m010'),
+            'link'=> 'https://6c2129e63586-12817177712444975226.ngrok-free.app',
             'active'=> '1',
             'remember_token' => Str::random(60),
         ]);

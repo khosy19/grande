@@ -84,7 +84,7 @@
                 <td class="tg-7btt">Burst Time</td>
                 <td class="tg-7btt">Finish Time</td>
                 <td class="tg-7btt">Waiting Time</td>
-                <td class="tg-7btt">TAT</td>
+                {{-- <td class="tg-7btt">TAT</td> --}}
             </tr>
             @foreach ($laporan_fcfs as $data)
             <tr>
@@ -94,7 +94,7 @@
                 <td class="tg-0pky" style="text-align: center">{{ $data->burst_time }}</td>
                 <td class="tg-0pky" style="text-align: center">{{ $data->finish_time }}</td>
                 <td class="tg-0pky" style="text-align: center">{{ $data->waiting_time }}</td>
-                <td class="tg-0pky" style="text-align: center">{{ $data->tat }}</td>
+                {{-- <td class="tg-0pky" style="text-align: center">{{ $data->tat }}</td> --}}
             </tr>
            @endforeach
           </tbody>

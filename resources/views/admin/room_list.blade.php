@@ -42,7 +42,7 @@
                                 {{-- <td>{!! QrCode::size(60)->generate($data->link) !!}</td> --}}
                                 {{-- <td>{!! QrCode::size(60)->generate(Request::url('http://127.0.0.1:8000/guest/dashboard')) !!}</td> --}}
                                 <td>{!! QrCode::size(60)->generate(Request::url('https://6c2129e63586-12817177712444975226.ngrok-free.app')) !!}</td>
-                                <td><a href="{{ route('cetakStruk', $data->id) }}" class="btn btn-danger" target="_blank">Cetak QR</a></td>
+                                <td><a href="{{ route('cetakqr', $data->id) }}" class="btn btn-danger" target="_blank">Cetak QR</a></td>
                                 <td class="text-center">
                                     @if($data->active == 1)
                                         <button class="btn btn-info btn-round">Active</button>
