@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use URL;
 
 class RoomController extends Controller
 {
@@ -31,6 +32,7 @@ class RoomController extends Controller
             'name' => $request->name,
             'room' => $request->email,
             'level' => 'guest',
+            'link' => URL::to('/auth?room='.$request->email.'&password='.$request->password),
             'active' => $request->status,
             'password' => bcrypt($request->password),
             'remember_token' => Str::random(60),

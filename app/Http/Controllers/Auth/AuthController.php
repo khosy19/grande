@@ -14,13 +14,21 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        if(Auth::attempt($request->only('room', 'password'))){
-            return redirect(Auth::user()->level.'/dashboard');
-        }elseif (Auth::attempt($request->only('room'.'m001', 'password'.'m001'))){    
-            return redirect(Auth::user()->level.'/dashboard/1');
+        $credentials = $request->only('room', 'password');
+    
+        // Check if the request includes a login URL
+        if ($request->filled('room') && $request->filled('password')) {
+            $credentials['room'] = $request->input('room');
+            $credentials['password'] = $request->input('password');
         }
+    
+        if(Auth::attempt($credentials)){
+            return redirect(Auth::user()->level.'/dashboard');
+        }
+    
         return redirect('/')->withErrors(['Kode tidak sesuai silahkan coba kembali']);
     }
+    
 
     public function logout(){
         Auth::logout();
